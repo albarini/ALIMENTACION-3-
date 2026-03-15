@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Personal Élite — Análisis Científico Integral V4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@300;400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --ink:        #0e0c0a;
+  --ink2:       #2a2520;
+  --ink3:       #4a4035;
+  --dust:       #8a7a6a;
+  --parch:      #f5f0e8;
+  --parch2:     #ede6d8;
+  --parch3:     #e2d8c8;
+  --line:       #d5caba;
+  --line2:      #c5b8a0;
+  --gold:       #9a7c3a;
+  --gold2:      #c4a055;
+  --gold3:      #e8c878;
+  --red:        #8b2020;
+  --red2:       #c43030;
+  --amber:      #8b5a15;
+  --amber2:     #c4850a;
+  --green:      #1a4a25;
+  --green2:     #2d7a3a;
+  --blue:       #1a3050;
+  --blue2:      #2d5080;
+  --serif:      'Playfair Display', Georgia, serif;
+  --baskerville:'Libre Baskerville', Georgia, serif;
+  --mono:       'DM Mono', 'Courier New', monospace;
+  --sans:       'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--parch);
+  color: var(--ink);
+  font-family: var(--baskerville);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   GRAIN OVERLAY
+═══════════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: .5;
+}
+
+/* ═══════════════════════════════════════════
+   NAV — editorial bar
+═══════════════════════════════════════════ */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--ink);
+  border-bottom: 1px solid #3a3028;
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; gap: 0;
+  padding: 0 2rem;
+}
+.nav-brand {
+  color: var(--gold2);
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  padding: 14px 0;
+  margin-right: 3rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav-brand span { color: var(--dust); font-weight: 400; font-size: 11px; margin-left: 6px; }
+nav { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+nav::-webkit-scrollbar { display: none; }
+nav a {
+  color: #6a5e50;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 14px;
+  white-space: nowrap;
+  transition: color .2s;
+  border-bottom: 2px solid transparent;
+}
+nav a:hover { color: var(--gold2); }
+nav a.active { color: var(--gold3); border-bottom-color: var(--gold2); }
+
+/* ═══════════════════════════════════════════
+   HERO — journal cover
+═══════════════════════════════════════════ */
+.hero {
+  background: var(--ink);
+  color: var(--parch);
+  padding: 6rem 2rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute; right: -100px; top: -100px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(154,124,58,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-kicker {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold2);
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.hero-kicker::before { content: ''; flex: none; width: 32px; height: 1px; background: var(--gold); }
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: 1.5rem;
+  color: var(--parch);
+}
+.hero h1 em { font-style: italic; color: var(--gold3); }
+.hero-abstract {
+  font-family: var(--baskerville);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #8a7a6a;
+  max-width: 640px;
+  margin-bottom: 3rem;
+  border-left: 2px solid var(--gold);
+  padding-left: 1.5rem;
+}
+.hero-meta {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+}
+.meta-item { }
+.meta-val {
+  display: block;
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--gold2);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.meta-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #4a4035;
+}
+.hero-divider {
+  border: none;
+  border-top: 1px solid #2a2520;
+  margin: 2.5rem 0;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════ */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.section { padding: 5rem 0; border-bottom: 1px solid var(--line); }
+.section:last-child { border-bottom: none; }
+
+/* ═══════════════════════════════════════════
+   SECTION HEADER — journal style
+═══════════════════════════════════════════ */
+.sec-header { margin-bottom: 3rem; }
+.sec-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  display: block;
+}
+.sec-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: .75rem;
+}
+.sec-lead {
+  font-family: var(--baskerville);
+  font-size: 1.05rem;
+  color: var(--dust);
+  font-style: italic;
+  max-width: 680px;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   CALLOUT — alert boxes
+═══════════════════════════════════════════ */
+.callout {
+  padding: 1.25rem 1.75rem;
+  margin-bottom: 2rem;
+  border-left: 3px solid;
+  background: rgba(0,0,0,.03);
+}
+.callout-critical { border-color: var(--red2); }
+.callout-critical .callout-tag { color: var(--red2); }
+.callout-warning  { border-color: var(--amber2); }
+.callout-warning .callout-tag  { color: var(--amber2); }
+.callout-insight  { border-color: var(--gold); }
+.callout-insight .callout-tag  { color: var(--gold); }
+.callout-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: .4rem;
+}
+.callout p {
+  font-family: var(--baskerville);
+  font-size: .9rem;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+.callout strong { color: var(--ink); }
+
+/* ═══════════════════════════════════════════
+   SUB-HEADING
+═══════════════════════════════════════════ */
+h3.subhead {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 3rem 0 1.25rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 1rem;
+}
+h3.subhead::after { content: ''; flex: 1; border-top: 1px solid var(--line2); }
+
+/* ═══════════════════════════════════════════
+   EVIDENCE TABLE — scientific
+═══════════════════════════════════════════ */
+.ev-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+.ev-table th {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--dust);
+  padding: 8px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--ink);
+  background: transparent;
+}
+.ev-table td {
+  font-family: var(--baskerville);
+  font-size: .85rem;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink2);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.ev-table tr:hover td { background: rgba(154,124,58,.04); }
+.ev-table td:first-child { font-weight: 700; color: var(--ink); }
+.cite {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--dust);
+  display: block;
+  margin-top: 3px;
+}
+.badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border: 1px solid;
+}
+.badge-critical { border-color: var(--red2); color: var(--red2); }
+.badge-high     { border-color: var(--amber2); color: var(--amber2); }
+.badge-medium   { border-color: var(--gold); color: var(--gold); }
+.badge-low      { border-color: var(--green2); color: var(--green2); }
+.badge-new      { border-color: var(--blue2); color: var(--blue2); }
+
+/* ═══════════════════════════════════════════
+   MECHANISM BLOCK — why it matters
+═══════════════════════════════════════════ */
+.mechanism {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  margin-bottom: 2rem;
+}
+@media(max-width:700px){ .mechanism { grid-template-columns: 1fr; } }
+.mech-cell {
+  background: var(--parch);
+  padding: 1.5rem;
+}
+.mech-cell:hover { background: var(--parch2); }
+.mech-domain {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .5rem;
+  display: block;
+}
+.mech-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: .6rem;
+  line-height: 1.3;
+}
+.mech-body {
+  font-family: var(--baskerville);
+  font-size: .85rem;
+  color: var(--ink3);
+  line-height: 1.6;
+}
+.mech-body strong { color: var(--ink); }
+.mech-cite {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  color: var(--dust);
+  margin-top: .75rem;
+  padding-top: .75rem;
+  border-top: 1px solid var(--line);
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   PROTOCOL BLOCK
+═══════════════════════════════════════════ */
+.proto-block {
+  border: 1px solid var(--line);
+  margin-bottom: 1.5rem;
+  background: var(--parch);
+}
+.proto-header {
+  background: var(--ink);
+  padding: .8rem 1.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+.proto-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold2);
+}
+.proto-title-text {
+  font-family: var(--baskerville);
+  font-size: .9rem;
+  color: var(--parch2);
+}
+.proto-body {
+  padding: 1.25rem 1.5rem;
+}
+.proto-body p {
+  font-family: var(--baskerville);
+  font-size: .88rem;
+  color: var(--ink2);
+  line-height: 1.65;
+  margin-bottom: .5rem;
+}
+.proto-body p:last-child { margin-bottom: 0; }
+.proto-body strong { color: var(--ink); }
+.proto-body em { color: var(--dust); font-style: italic; }
+
+/* ═══════════════════════════════════════════
+   PRINCIPLE CARD — influence section
+═══════════════════════════════════════════ */
+.principle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+}
+@media(max-width:700px){ .principle-grid { grid-template-columns: 1fr; } }
+.principle-card {
+  background: var(--parch);
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+.principle-card:hover { background: var(--parch2); }
+.p-index {
+  font-family: var(--serif);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--line2);
+  line-height: 1;
+  margin-bottom: .5rem;
+  letter-spacing: -.04em;
+}
+.p-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: .75rem;
+  line-height: 1.3;
+}
+.p-body {
+  font-family: var(--baskerville);
+  font-size: .85rem;
+  color: var(--ink3);
+  line-height: 1.65;
+  margin-bottom: .75rem;
+}
+.p-example {
+  font-family: var(--baskerville);
+  font-size: .82rem;
+  color: var(--dust);
+  font-style: italic;
+  padding-left: 1rem;
+  border-left: 2px solid var(--gold);
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════
+   BOOK LIST — editorial
+═══════════════════════════════════════════ */
+.book-row {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: flex-start;
+}
+.book-row:first-of-type { border-top: 1px solid var(--line); }
+.book-num {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--line2);
+  line-height: 1;
+  min-width: 2.5rem;
+  flex-shrink: 0;
+  padding-top: .2rem;
+}
+.book-content { flex: 1; }
+.book-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+  font-style: italic;
+}
+.book-author {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .1em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: .6rem;
+}
+.book-rationale {
+  font-family: var(--baskerville);
+  font-size: .85rem;
+  color: var(--ink3);
+  line-height: 1.6;
+}
+.book-tags { margin-top: .6rem; display: flex; gap: .4rem; flex-wrap: wrap; }
+
+/* ═══════════════════════════════════════════
+   TRAVEL — accordion
+═══════════════════════════════════════════ */
+.country-accordion { border: 1px solid var(--line); margin-bottom: 1px; }
+.country-trigger {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: left;
+  background: var(--parch2);
+  transition: background .2s;
+}
+.country-trigger:hover { background: var(--parch3); }
+.country-trigger[aria-expanded="true"] { background: var(--ink); }
+.country-trigger[aria-expanded="true"] .ct-name,
+.country-trigger[aria-expanded="true"] .ct-sub { color: var(--parch) !important; }
+.country-trigger[aria-expanded="true"] .ct-flag { filter: none; }
+.ct-flag { font-size: 2rem; flex-shrink: 0; }
+.ct-info { flex: 1; }
+.ct-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 2px;
+}
+.ct-sub {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .12em;
+  color: var(--dust);
+  text-transform: uppercase;
+}
+.ct-arrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gold2);
+  transition: transform .2s;
+}
+.country-trigger[aria-expanded="true"] .ct-arrow { transform: rotate(180deg); }
+.country-panel {
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--line);
+  display: none;
+  background: var(--parch);
+}
+.country-panel.open { display: block; }
+.travel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+@media(max-width:700px){ .travel-grid { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════
+   PRIORITY TABLE — gap analysis
+═══════════════════════════════════════════ */
+.priority-row {
+  display: grid;
+  grid-template-columns: 28px 1fr 140px 100px;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+@media(max-width:700px){ .priority-row { grid-template-columns: 28px 1fr; } }
+.priority-row:first-child { border-top: 2px solid var(--ink); }
+.pr-rank {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--line2);
+  font-weight: 700;
+  padding-top: 2px;
+}
+.pr-content {}
+.pr-what {
+  font-family: var(--baskerville);
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: .3rem;
+}
+.pr-why {
+  font-family: var(--baskerville);
+  font-size: .82rem;
+  color: var(--ink3);
+  line-height: 1.55;
+}
+.pr-action {
+  font-family: var(--baskerville);
+  font-size: .8rem;
+  color: var(--dust);
+  font-style: italic;
+  line-height: 1.4;
+}
+@media(max-width:700px){ .pr-action, .priority-row > .badge { display: none; } }
+
+/* ═══════════════════════════════════════════
+   TIMELINE — daily protocol
+═══════════════════════════════════════════ */
+.tl { position: relative; padding-left: 3rem; }
+.tl::before {
+  content: '';
+  position: absolute; left: .85rem; top: 8px; bottom: 8px;
+  width: 1px; background: var(--line2);
+}
+.tl-item { position: relative; margin-bottom: 2.5rem; }
+.tl-dot {
+  position: absolute;
+  left: -3rem; top: 4px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: var(--parch);
+}
+.tl-time {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .3rem;
+}
+.tl-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: .4rem;
+}
+.tl-desc {
+  font-family: var(--baskerville);
+  font-size: .85rem;
+  color: var(--ink3);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   ANDEAN TABLE
+═══════════════════════════════════════════ */
+.andean-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+}
+@media(max-width:700px){ .andean-grid { grid-template-columns: 1fr; } }
+.andean-cell {
+  background: var(--parch);
+  padding: 1.5rem;
+}
+.andean-cell:hover { background: var(--parch2); }
+.andean-name {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: .25rem;
+}
+.andean-latin {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 300;
+  letter-spacing: .08em;
+  color: var(--dust);
+  font-style: italic;
+  margin-bottom: .75rem;
+  display: block;
+}
+.andean-body {
+  font-family: var(--baskerville);
+  font-size: .82rem;
+  color: var(--ink3);
+  line-height: 1.6;
+}
+.andean-why {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  color: var(--gold);
+  letter-spacing: .08em;
+  margin-top: .75rem;
+  padding-top: .75rem;
+  border-top: 1px solid var(--line);
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  color: #4a4035;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.footer-inner { max-width: 680px; margin: 0 auto; }
+.footer-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--gold2);
+  margin-bottom: .75rem;
+  font-style: italic;
+}
+.footer-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .12em;
+  line-height: 2;
+}
+
+/* ═══════════════════════════════════════════
+   AROMA CARDS
+═══════════════════════════════════════════ */
+.aroma-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+}
+@media(max-width:700px){ .aroma-grid { grid-template-columns: 1fr; } }
+.aroma-card {
+  background: var(--parch);
+  padding: 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.aroma-card:hover { background: var(--parch2); }
+.aroma-pip {
+  width: 8px; height: 8px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 7px;
+}
+.aroma-info {}
+.aroma-name {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: .25rem;
+}
+.aroma-desc {
+  font-family: var(--baskerville);
+  font-size: .82rem;
+  color: var(--ink3);
+  line-height: 1.55;
+}
+.aroma-price {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--gold);
+  margin-top: .4rem;
+  letter-spacing: .08em;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeUp .6s ease both; }
+.fade-in:nth-child(2) { animation-delay: .1s; }
+.fade-in:nth-child(3) { animation-delay: .2s; }
+.fade-in:nth-child(4) { animation-delay: .3s; }
+
+/* ═══════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════ */
+.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media(max-width:700px){ .cols-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ═══════ HEADER ═══════ -->
+<header>
+  <div class="nav-inner">
+    <div class="nav-brand">Sistema Personal <span>· Élite V4</span></div>
+    <nav>
+      <a href="#perfil" class="active">Perfil</a>
+      <a href="#alimentacion">Alimentación</a>
+      <a href="#piel">Piel & Cuerpo</a>
+      <a href="#presencia">Voz & Presencia</a>
+      <a href="#influencia">Influencia</a>
+      <a href="#libros">Biblioteca</a>
+      <a href="#viajes">Viajes</a>
+      <a href="#aroma">Aroma</a>
+      <a href="#protocolo">Protocolo</a>
+      <a href="#brechas">Prioridades</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="hero-inner fade-in">
+    <div class="hero-kicker">Análisis Científico Integral · Versión 4.0 · Arequipa, Perú</div>
+    <h1>De hábitos correctos<br>a <em>presencia de élite</em></h1>
+    <p class="hero-abstract">
+      Este documento integra evidencia clínica revisada por pares (PubMed, Scopus, Cochrane) con tu perfil biométrico real, los datos de tu Excel y un análisis de brechas específicas para alcanzar el nivel de un top performer global: masa muscular, piel, voz, influencia, viajes y marca personal.
+    </p>
+    <hr class="hero-divider">
+    <div class="hero-meta">
+      <div class="meta-item"><span class="meta-val">47</span><span class="meta-label">Hábitos en sistema</span></div>
+      <div class="meta-item"><span class="meta-val">12</span><span class="meta-label">G4 élite nuevos</span></div>
+      <div class="meta-item"><span class="meta-val">29</span><span class="meta-label">Objetivos activos</span></div>
+      <div class="meta-item"><span class="meta-val">6</span><span class="meta-label">Dominios de vida</span></div>
+      <div class="meta-item"><span class="meta-val">535</span><span class="meta-label">Fórmulas Excel</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="page">
+
+<!-- ═══════ 00 PERFIL ═══════ -->
+<section class="section" id="perfil">
+  <div class="sec-header">
+    <span class="sec-num">00 · Perfil clínico</span>
+    <h2 class="sec-title">Diagnóstico raíz y estado actual del sistema</h2>
+    <p class="sec-lead">Antes de optimizar, es necesario entender qué está fallando y por qué. Un tratamiento de élite ataca causas, no síntomas.</p>
+  </div>
+
+  <div class="callout callout-critical">
+    <span class="callout-tag">Prioridad crítica — IMC</span>
+    <p><strong>60 kg / 1.80 m = IMC 18.5</strong>, límite inferior absoluto OMS. Esto no es un dato estético: es la causa directa de tu baja energía, fatiga cognitiva e irritabilidad. El cerebro consume el 20% de las calorías totales. Con déficit calórico severo hay hipoglucemia cerebral periódica. Meta inmediata: <strong>+500–700 kcal/día de alimentos de alta densidad</strong>. No suplementos — comida real. <span class="cite">Lieberman HR (2003). Appetite, 40(3):245-254.</span></p>
+  </div>
+  <div class="callout callout-warning">
+    <span class="callout-tag">Segundo factor — Sueño</span>
+    <p><strong>6 horas actuales vs. 7.5–8h requeridas</strong> para función cognitiva y hormonal óptima. Con 6h durante 2 semanas, los déficits cognitivos equivalen a 2 noches de privación total. La amígdala se vuelve 60% más reactiva — explica directamente la irritabilidad. <strong>Ningún suplemento, hábito ni protocolo compensa la privación crónica de sueño.</strong> <span class="cite">Harrison & Horne (2000). J Exp Psychology. / Goldstein & Walker (2014). Annu Rev Clin Psychol.</span></p>
+  </div>
+  <div class="callout callout-insight">
+    <span class="callout-tag">Tu ventaja actual</span>
+    <p>Ya tienes una base nutricional sólida: B12, Mg, astaxantina, kéfir, quinoa, maca, zinc, colágeno. Esto es el 40% del sistema de un top performer. Los protocolos que siguen construyen el 60% restante sobre esa base — no la reemplazan.</p>
+  </div>
+
+  <h3 class="subhead">Por qué importa cada hábito que ya tienes</h3>
+  <table class="ev-table">
+    <thead><tr><th>Hábito actual</th><th>Mecanismo de acción</th><th>Impacto en top performer</th><th>Días ✓</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>Abstinencia</td><td>Reduce habituación de receptores D2 (dopamina). Recupera motivación para objetivos de largo plazo. <span class="cite">Kühn & Gallinat (2014). JAMA Psychiatry.</span></td><td>+45–90 min/día productivos. Mayor foco en Deep Work y lectura.</td><td>6</td><td><span class="badge badge-high">En racha</span></td></tr>
+      <tr><td>B12 sublingual</td><td>Metilcobalamina: síntesis de mielina en nervio auditivo y corteza prefrontal. Cofactor ciclo de metilación. <span class="cite">Green R et al. (2017). Nature Rev Disease Primers.</span></td><td>Tinnitus, memoria, energía, estado de ánimo. El déficit explica 4 de tus síntomas actuales.</td><td>0</td><td><span class="badge badge-critical">No tomado</span></td></tr>
+      <tr><td>Citrato de Mg</td><td>Activa receptores GABA-A → sueño NREM. Bloquea canales NMDA cocleares. Regula eje HHA (ansiedad). <span class="cite">Boyle NB et al. (2017). Nutrients, 9(5):429.</span></td><td>Reduce ansiedad, mejora calidad de sueño, atenúa tinnitus nocturno.</td><td>3</td><td><span class="badge badge-medium">Parcial</span></td></tr>
+      <tr><td>Astaxantina</td><td>Carotenoid 6000× más potente que Vit. C en neutralización de oxígeno singlete. Protege mitocondrias cocleares. <span class="cite">Fetoni AR et al. (2013). Exp Gerontology.</span></td><td>Tinnitus, cognición, piel, recuperación muscular post-ejercicio −35%.</td><td>0</td><td><span class="badge badge-critical">No tomada</span></td></tr>
+      <tr><td>Kéfir</td><td>90–95% serotonina producida en intestino. Mejora absorción de B12 y Mg. Modula neurotransmisores vía nervio vago. <span class="cite">Dinan TG et al. (2015). Biol Psychiatry.</span></td><td>Estado de ánimo, absorción de todos tus suplementos, sistema inmune.</td><td>0</td><td><span class="badge badge-critical">No tomado</span></td></tr>
+      <tr><td>Zinc 30mg</td><td>Cofactor de +300 enzimas. Síntesis de testosterona en células de Leydig. Inhibe aromatasa parcialmente.</td><td>Testosterona, piel, cicatrización, sistema inmune, cabello.</td><td>0</td><td><span class="badge badge-critical">No tomado</span></td></tr>
+      <tr><td>Colágeno</td><td>Proporciona prolina + glicina. La síntesis requiere Vitamina C como cofactor enzimático (prolil hidroxilasa).</td><td>Piel, articulaciones, tendinosas (clave para ejercicio con bajo peso).</td><td>0</td><td><span class="badge badge-critical">Sin C</span></td></tr>
+      <tr><td>Maca negra</td><td>Glucosinolatos → función colinérgica. Reduce fatiga vía eje HHA. No altera testosterona directamente. <span class="cite">Shin BC et al. (2010). J Ethnopharmacology.</span></td><td>Energía sostenida, cognición, libido sin efecto hormonal directo.</td><td>4</td><td><span class="badge badge-medium">Regular</span></td></tr>
+      <tr><td>Ejercicio</td><td>BDNF +200–300% con aeróbico moderado. Testosterona +↑. Postura. Metabolismo basal. <span class="cite">Hillman CH et al. (2008). Nature Rev Neurosci.</span></td><td>Todo. El hábito de mayor ROI en el sistema. Sin esto el resto es subóptimo.</td><td>0</td><td><span class="badge badge-critical">0 días</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════ 01 ALIMENTACIÓN ═══════ -->
+<section class="section" id="alimentacion">
+  <div class="sec-header">
+    <span class="sec-num">01 · Alimentación</span>
+    <h2 class="sec-title">Protocolo nutricional para masa muscular, testosterona y cognición</h2>
+    <p class="sec-lead">La testosterona natural no sube con suplementos hormonales — sube con colesterol HDL de buena calidad, zinc biodisponible, sueño profundo y ausencia de déficit calórico. Todo esto viene de la comida.</p>
+  </div>
+
+  <h3 class="subhead">Lo que te falta — brechas alimentarias críticas</h3>
+  <div class="mechanism">
+    <div class="mech-cell">
+      <span class="mech-domain">Testosterona · Proteína completa</span>
+      <div class="mech-title">Huevos enteros — 3 por día</div>
+      <div class="mech-body">La yema contiene colesterol LDL que las células de Leydig convierten en testosterona. La colina es precursora de acetilcolina (neurotransmisor de memoria). La leucina activa mTOR — señal de síntesis proteica muscular. Un huevo aporta proteína más biodisponible que cualquier polvo de proteína.<br><br><strong>Por qué tú en particular:</strong> ectomorfo con IMC 18.5, necesitas calor calórico denso + señal anabólica. Los huevos son el vehículo más eficiente. Costo: S/0.50/huevo = S/1.50/día.</div>
+      <span class="mech-cite">Ratliff J et al. (2010). Metabolism. / Herron KL et al. (2004). J Nutrition.</span>
+    </div>
+    <div class="mech-cell">
+      <span class="mech-domain">Omega-3 biodisponible · D3 natural</span>
+      <div class="mech-title">Sardinas o caballa — 3×/semana</div>
+      <div class="mech-body">El Omega-3 en pescado azul (forma fosfolipídica) tiene 2× mayor biodisponibilidad que el suplemento en cápsula. Además aportan vitamina D3 natural (que el suplemento reemplaza pero no supera), calcio con las espinas, selenio para función tiroidea y B12 adicional.<br><br><strong>Por qué importa para tu estética:</strong> Omega-3 EPA/DHA → membrana celular dérmica más flexible = piel hidratada, menos inflamación (rojeces), brillo cutáneo real. Costo: S/3–5/lata.</div>
+      <span class="mech-cite">Dyerberg J et al. (2010). Prostaglandins, Leukotr. / Holick MF (2007). NEJM.</span>
+    </div>
+    <div class="mech-cell">
+      <span class="mech-domain">Antiandrógeno aromático · Testosterona</span>
+      <div class="mech-title">Cebolla morada cruda — diaria</div>
+      <div class="mech-body">La quercetina (flavonoide principal) inhibe la aromatasa — la enzima que convierte testosterona en estrógeno. Además, en estudios animales y algunos estudios humanos, aumenta LH (hormona luteinizante), que estimula producción testicular de testosterona.<br><br>Agrégala cruda al almuerzo — el calor destruye quercetina. Combinada con ajo (que también inhibe estrógeno vía alicina), forman el dúo anti-aromático más económico disponible.</div>
+      <span class="mech-cite">Daremniy I et al. (2010). Zhurnal AMN Ukrainy. / Gauthaman K (2003). J Ethnopharmacology.</span>
+    </div>
+    <div class="mech-cell">
+      <span class="mech-domain">BDNF cerebral · Antocianinas</span>
+      <div class="mech-title">Camote morado + arándanos/mora</div>
+      <div class="mech-body">Las antocianinas cruzan la barrera hematoencefálica y aumentan BDNF (Brain-Derived Neurotrophic Factor) — la proteína más importante para la plasticidad sináptica y el aprendizaje. El camote morado andino tiene mayor concentración que el blueberry importado.<br><br><strong>Para tu carga cognitiva</strong> (Ing. Civil + Electrónica + academia): BDNF es la diferencia entre acumular información y realmente aprenderla. Económico y andino.</div>
+      <span class="mech-cite">Krikorian R et al. (2010). J Agricultural Food Chem. / Shukitt-Hale B (2012). J Agric Food Chem.</span>
+    </div>
+    <div class="mech-cell">
+      <span class="mech-domain">Colágeno máximo · Vitamina C</span>
+      <div class="mech-title">Camu-camu — 1 cdita/día</div>
+      <div class="mech-body">60× más vitamina C que la naranja por gramo de peso seco. La vitamina C es cofactor enzimático obligatorio para la prolil hidroxilasa — la enzima que estabiliza la triple hélice del colágeno. Sin ella, el colágeno que tomas se degrada antes de incorporarse al tejido.<br><br><strong>Para tu piel específicamente:</strong> las manchas del rostro son por acumulación de melanina en dermis. La vitamina C inhibe la tirosinasa (enzima que produce melanina) y activa la renovación colágena. El camu-camu hace esto a dosis 3× menores que los suplementos sintéticos.</div>
+      <span class="mech-cite">Chirinos R et al. (2010). J Agric Food Chem. / Pullar JM et al. (2017). Nutrients.</span>
+    </div>
+    <div class="mech-cell">
+      <span class="mech-domain">Omega-3 vegetal · Proteína completa</span>
+      <div class="mech-title">Sacha inchi — 20–30 g/día</div>
+      <div class="mech-body">La nuez andina con mayor concentración de ácido alfa-linolénico (48%) — superior a chía y linaza. Además tiene 27g de proteína/100g con un perfil aminoacídico completo e inusual para una planta (incluye triptófano, precursor de serotonina).<br><br>Como snack o en batido, añade Omega-3 vegetal, proteína biodisponible y grasas que favorecen la absorción de astaxantina (liposoluble). Tres funciones en un alimento.</div>
+      <span class="mech-cite">Fanali C et al. (2011). J Sep Sci. / Gorriti A et al. (2010). Rev Perú Med Exp.</span>
+    </div>
+  </div>
+
+  <h3 class="subhead">Superalimentos andinos con propiedades estéticas y hormonales</h3>
+  <div class="andean-grid">
+    <div class="andean-cell">
+      <div class="andean-name">Aguaymanto</div>
+      <span class="andean-latin">Physalis peruviana — Uchuva</span>
+      <div class="andean-body">Witanólidos (adaptógenos) que reducen el cortisol — la hormona que destruye testosterona, colágeno y masa muscular bajo estrés. Vitaminas A, C, complejo B en un solo fruto. Antiinflamatorio dérmico por vía sistémica.</div>
+      <span class="andean-why">↓ Cortisol → ↑ Testosterona efectiva · Piel menos reactiva</span>
+    </div>
+    <div class="andean-cell">
+      <div class="andean-name">Kiwicha / Amaranto</div>
+      <span class="andean-latin">Amaranthus caudatus</span>
+      <div class="andean-body">Único cereal con lisina completa — el aminoácido que falta en todos los otros cereales y que es co-factor de la síntesis de colágeno. 14g proteína/100g. Hierro y calcio superiores al trigo. Complementa la cañihua en perfil aminoacídico.</div>
+      <span class="andean-why">Lisina → síntesis colágeno · Diferente perfil que cañihua</span>
+    </div>
+    <div class="andean-cell">
+      <div class="andean-name">Lúcuma</div>
+      <span class="andean-latin">Pouteria lucuma</span>
+      <div class="andean-body">IG muy bajo (25) con sabor dulce intenso — reemplaza el azúcar sin pico glucémico. Beta-caroteno precursor de vitamina A: esencial para renovación celular dérmica nocturna. Niacina (B3) que mejora circulación superficial y tono uniforme de piel.</div>
+      <span class="andean-why">Tono de piel · Energía estable · IG bajo</span>
+    </div>
+    <div class="andean-cell">
+      <div class="andean-name">Maíz morado</div>
+      <span class="andean-latin">Zea mays indurata</span>
+      <div class="andean-body">Antocianinas: activan angiogénesis → nueva vasculatura en cuero cabelludo y dermis. Mejora circulación facial visible. Como chicha morada sin azúcar o en harina — no como refresco industrial. El color morado profundo es proporcional a la concentración de antocianinas.</div>
+      <span class="andean-why">Circulación capilar y facial · Antocianinas &gt; arándanos importados</span>
+    </div>
+    <div class="andean-cell">
+      <div class="andean-name">Mashua / Añu</div>
+      <span class="andean-latin">Tropaeolum tuberosum</span>
+      <div class="andean-body">Glucosinolatos únicos con actividad antibacterial dermal comprobada. Poco conocido fuera de los Andes. Efecto antiandrogénico leve — útil si el exceso de DHT está contribuyendo a calvicie androgénica. Cocido pierde parte de glucosinolatos, preferable asado.</div>
+      <span class="andean-why">Antibacterial piel · Modula DHT capilar</span>
+    </div>
+    <div class="andean-cell">
+      <div class="andean-name">Linaza (activar)</div>
+      <span class="andean-latin">Linum usitatissimum — ya en tu lista</span>
+      <div class="andean-body">Lignanos con actividad antiestrogénica (inhiben aromatasa periférica). Omega-3 vegetal ALA. Fibra soluble prebiótica — potencia el kéfir que ya tomas. 2 cdas molidas/día en batido. <strong>Molida</strong> — entera no se absorbe.</div>
+      <span class="andean-why">Ya la tienes → activar tracking diario</span>
+    </div>
+  </div>
+
+  <h3 class="subhead">Protocolos de comida diarios</h3>
+  <div class="proto-block">
+    <div class="proto-header">
+      <span class="proto-label">Desayuno · 07:00</span>
+      <span class="proto-title-text">Protocolo testosterónico completo — ~700 kcal</span>
+    </div>
+    <div class="proto-body">
+      <p><strong>3 huevos enteros</strong> (revueltos en oliva, no mantequilla) + <strong>2 cdas cañihua tostada</strong> + <strong>½ palta</strong> + <strong>1 cdita maca negra gelatinizada</strong> en <strong>kéfir 200ml</strong>.</p>
+      <p><strong>Por qué funciona:</strong> La grasa de la palta y los huevos proporciona colesterol LDL para síntesis de testosterona. La cañihua aporta hierro biodisponible (8.4mg/100g). El kéfir mejora absorción de todos los micronutrientes. La maca modula el eje HHA sin alterar testosterona directamente.</p>
+      <p><em>Suplementos con esta comida: Zinc 30mg · Omega-3 2g · D3+K2.</em></p>
+    </div>
+  </div>
+  <div class="proto-block">
+    <div class="proto-header">
+      <span class="proto-label">Almuerzo · 13:00</span>
+      <span class="proto-title-text">Comida de recuperación muscular — ~750 kcal</span>
+    </div>
+    <div class="proto-body">
+      <p><strong>200g quinoa cocida</strong> + <strong>150g pollo/sardinas/huevo</strong> + <strong>espinaca cruda o ligeramente cocida</strong> + <strong>cebolla morada cruda</strong> + <strong>1–2 dientes ajo triturado</strong> (10 min reposo antes de comer) + <strong>½ palta</strong>.</p>
+      <p><strong>La sinergia ajo + cebolla morada:</strong> juntos inhiben la aromatasa (conversión T→E) y mejoran la microcirculación. El ajo debe triturarse y reposar 10 minutos para que la aliinasa active la alicina — el calor la destruye, así que se agrega crudo al final.</p>
+      <p><em>Suplementos con esta comida: Astaxantina 12mg (obligatorio con grasa) · NAC 600mg · Creatina 5g.</em></p>
+    </div>
+  </div>
+  <div class="proto-block">
+    <div class="proto-header">
+      <span class="proto-label">Batido colación · 16:00</span>
+      <span class="proto-title-text">Recuperación + piel + cognición — ~450 kcal</span>
+    </div>
+    <div class="proto-body">
+      <p><strong>Proteína Tarwi 30g</strong> + <strong>plátano maduro</strong> + <strong>½ cdita camu-camu en polvo</strong> + <strong>1 cda sacha inchi molido</strong> + <strong>1 cda linaza molida</strong> + <strong>200ml leche o kéfir</strong> + <strong>camote morado cocido 80g</strong>.</p>
+      <p><strong>Por qué camu-camu aquí:</strong> La vitamina C del camu-camu activa la prolil hidroxilasa 45–60 min antes de la síntesis de colágeno nocturna. Tomar el colágeno + vitamina C en el batido de tarde maximiza la producción dérmica nocturna.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 02 PIEL & CUERPO ═══════ -->
+<section class="section" id="piel">
+  <div class="sec-header">
+    <span class="sec-num">02 · Piel & Cuerpo</span>
+    <h2 class="sec-title">Protocolo dermal, capilar y de apariencia física masculina</h2>
+    <p class="sec-lead">La piel es el órgano más visible del cuerpo y el que más directamente comunica salud, disciplina y edad percibida. Un hombre de 30 con piel cuidada proyecta entre 5 y 7 años menos y mayor autocontrol antes de abrir la boca.</p>
+  </div>
+
+  <h3 class="subhead">Hierbas y plantas con propiedades estéticas comprobadas</h3>
+  <div class="mechanism">
+    <div class="mech-cell">
+      <span class="mech-domain">Colágeno · Cicatrización</span>
+      <div class="mech-title">Sábila / Aloe vera — uso nocturno</div>
+      <div class="mech-body">El acemanano (polisacárido activo) estimula fibroblastos dérmicos con un aumento documentado de +25% en producción de colágeno en estudios in vitro y clínicos. Aplicado como gel puro en manchas activas tiene efecto aclarante por reducción de pigmentación post-inflamatoria.<br><br><strong>Protocolo:</strong> Gel puro (sin conservantes ni alcohol) aplicado después del aceite de rosa mosqueta. Puede dejarse toda la noche. Disponible fresco en mercados de Arequipa a S/2–5.</div>
+      <span class="mech-cite">Dal'Belo SE et al. (2006). Skin Research & Technology. / Teplicki E et al. (2018). J Clin Aesthetic Dermatol.</span>
+    </div>
+    <div class="mech-cell">
+      <span class="mech-domain">Anti-manchas · Retinol natural</span>
+      <div class="mech-title">Aceite de Rosa Mosqueta — noche</div>
+      <div class="mech-body">Contiene ácido transretinoico natural (tretinoin precursor) que activa receptores RAR en queratinocitos → acelera renovación celular. Ácido linoleico reduce hiperpigmentación. Comprobado para cicatrices, manchas y flacidez incipiente en más de 30 RCTs.<br><br><strong>Por qué es urgente para ti:</strong> Tienes "manchas cara" en tus objetivos. Este aceite, aplicado 3–4 gotas en noche sobre zonas hiperpigmentadas durante 8–12 semanas, tiene evidencia equivalente a productos cosméticos de S/300+. Costo: S/25–40.</div>
+      <span class="mech-cite">Phetcharat L et al. (2015). Clin Cosm Inv Dermatol. / Valerón-Almazán P (2015). J Cosm & Laser Therapy.</span>
+    </div>
+    <div class="mech-cell">
+      <span class="mech-domain">Cabello · 5-alfa-reductasa</span>
+      <div class="mech-title">Romero — igual que Minoxidil 2%</div>
+      <div class="mech-body">Panahi et al. (2015) comparó romero vs minoxidil 2% en RCT a 6 meses: eficacia equivalente en reducción de pérdida capilar, sin los efectos secundarios (picazón, irritación) del minoxidil. El mecanismo es doble: inhibición de 5-alfa-reductasa + vasodilatación folicular local.<br><br><strong>Técnica correcta:</strong> Infusión fría (nunca caliente sobre el cuero cabelludo). 5 ramas hervidas en 1L, enfriar, aplicar post-champú sin enjuagar. 3–4× semana.</div>
+      <span class="mech-cite">Panahi Y et al. (2015). SKINmed, 13(1):15-21.</span>
+    </div>
+    <div class="mech-cell">
+      <span class="mech-domain">Ansiolítico transdérmico · Antiinflamatorio</span>
+      <div class="mech-title">Manzanilla — baño y tónico</div>
+      <div class="mech-body">La apigenina actúa sobre receptores GABA-A con efecto ansiolítico transdérmico comparable a benzodiacepinas leves pero sin efectos secundarios (Amsterdam JD 2009). Tópicamente, inhibe COX-1/COX-2 — acción antiinflamatoria directa útil para acné activo, poros dilatados y piel reactiva.<br><br><strong>Doble uso:</strong> Baño nocturno 3× semana (ansiolítico + piel) + tónico facial (algodonciio, tónico frío).</div>
+      <span class="mech-cite">Srivastava JK et al. (2010). Mol Med Reports. / Amsterdam JD et al. (2009). Alt Ther Health Med.</span>
+    </div>
+    <div class="mech-cell">
+      <span class="mech-domain">Cabello · DHT · EGCG</span>
+      <div class="mech-title">Té verde matcha</div>
+      <div class="mech-body">El EGCG (epigalocatequina galato) inhibe la 5-alfa-reductasa tipo II — la enzima que convierte testosterona en DHT (dihidrotestosterona), el andrógeno responsable de la calvicie androgénica. Efecto documentado tanto oral como tópico.<br><br>Como bebida: 1–2 tazas/día. L-teanina + cafeína = foco mental sin la ansiedad del café solo. Para ojos: bolsa fría 10 min reduce ojeras vasculares por vasoconstricción.</div>
+      <span class="mech-cite">Eicheler W et al. (1998). Skin Pharmacol. / Liao S & Hiipakka RA (1995). Biochem Biophys Res.</span>
+    </div>
+    <div class="mech-cell">
+      <span class="mech-domain">Capilar · Antibacterial</span>
+      <div class="mech-title">Caléndula + aceite de argán</div>
+      <div class="mech-body">La caléndula tiene acción cicatrizante, antibacterial y levemente antifúngica — útil para foliculitis (puntos en barba), irritación post-afeitado y piel grasa. Aceite de argán: ácidos grasos oleico y linoleico que restauran la barrera lipídica sin ocluir poros.<br><br>Combinación: infusión caléndula como tónico + 2–3 gotas argán como sello hidratante. La barba tratada con esto proyecta cuidado sin esfuerzo visible.</div>
+      <span class="mech-cite">Preethi KC & Kuttan R (2009). J Clin Biochemistry. / Charrouf Z (2010). Phytochemistry Reviews.</span>
+    </div>
+  </div>
+
+  <h3 class="subhead">Agua fría — protocolo y mecanismos por dominio</h3>
+  <div class="callout callout-insight">
+    <span class="callout-tag">Por qué la ducha fría es el hábito de mayor ROI no nutricional</span>
+    <p>Una sola ducha fría de 2–3 minutos incrementa la dopamina plasmática en un 250% (Shevchuk NA, 2008. Medical Hypotheses) — mayor que cualquier estimulante legal. Cierra los poros, activa el sistema nervioso simpático para el día, reduce cortisol matutino y — crítico para tu objetivo de masa muscular — mantiene la temperatura testicular en el rango óptimo para síntesis de testosterona (≤36°C). Ningún suplemento hace todo eso a la vez. Costo: S/0. <span class="cite">Shevchuk NA (2008). Med Hypotheses, 70(5):995-1001.</span></p>
+  </div>
+  <table class="ev-table">
+    <thead><tr><th>Aspecto</th><th>Agua fría (15–20°C)</th><th>Agua tibia + manzanilla</th><th>Agua caliente</th></tr></thead>
+    <tbody>
+      <tr><td>Piel facial</td><td>Cierra poros, luminosidad inmediata, reduce inflamación acné</td><td>Antiinflamatoria, antibacterial, aclarante gradual</td><td>Reseca, dilata poros, degrada barrera lipídica</td></tr>
+      <tr><td>Cabello</td><td>Cierra cutícula → brillo, menos frizz, menos caída</td><td>Nutre folículo, aclara tono gradualmente</td><td>Abre cutícula, provoca frizz y fragilidad</td></tr>
+      <tr><td>Sistema nervioso</td><td>Dopamina +250%, noradrenalina +300%, alerta sostenida 3–4h</td><td>GABA → relajación, ideal como cierre nocturno</td><td>Vasodilata, reduce tensión muscular</td></tr>
+      <tr><td>Hormonal</td><td>Testiculotermia ≤36°C → producción testosterona óptima</td><td>Neutro</td><td>Hipertermia testicular → reduce producción hormonal</td></tr>
+      <tr><td>Momento ideal</td><td>Final de ducha matutina (2–3 min)</td><td>Baño nocturno 22:30, 3×/semana</td><td>Muscular post-ejercicio — no rutina diaria</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">Rutina dermal completa</h3>
+  <div class="cols-2">
+    <div class="proto-block">
+      <div class="proto-header"><span class="proto-label">Mañana · 05:20</span><span class="proto-title-text">Activación y protección</span></div>
+      <div class="proto-body">
+        <p><strong>1. Ducha: tibio 5 min → frío 2–3 min.</strong> El frío al final, no al inicio — la transición gradual maximiza el efecto sin el shock que hace abandonar el hábito.</p>
+        <p><strong>2. Limpieza:</strong> Jabón de arroz o cúrcuma (ya los tienes). Agua fría para cerrar. Pat dry — nunca frotar.</p>
+        <p><strong>3. Vitamina C:</strong> Camu-camu fresco frotado suave o sérum vitamina C. Antioxidante de la mañana.</p>
+        <p><strong>4. SPF 50+ UVA/UVB:</strong> El paso más importante de todos. Previene el 80% del envejecimiento visible. Aplica incluso días nublados — la radiación UVA penetra las nubes.</p>
+      </div>
+    </div>
+    <div class="proto-block">
+      <div class="proto-header"><span class="proto-label">Noche · 22:00</span><span class="proto-title-text">Regeneración y reparación</span></div>
+      <div class="proto-body">
+        <p><strong>1. Desmaquillado/aceite:</strong> 3–4 gotas aceite oliva o argán sobre piel seca. Masajear, retirar con agua tibia. Disuelve sebo y suciedad sin dañar barrera.</p>
+        <p><strong>2. Tónico manzanilla:</strong> Infusión fría, algodón, todo el rostro. Antiinflamatorio, antibacterial.</p>
+        <p><strong>3. Rosa mosqueta:</strong> 3–4 gotas sobre manchas específicas y contorno de ojos. Retinol natural actúa durante la síntesis celular nocturna.</p>
+        <p><strong>4. Aloe vera gel puro:</strong> Capa final sobre manchas como mascarilla. Potencia la acción del rosa mosqueta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 03 VOZ & PRESENCIA ═══════ -->
+<section class="section" id="presencia">
+  <div class="sec-header">
+    <span class="sec-num">03 · Voz & Presencia</span>
+    <h2 class="sec-title">Entrenamiento vocal, postura y presencia masculina de autoridad</h2>
+    <p class="sec-lead">El 38% de la percepción que otros tienen de ti viene del tono de voz — antes del contenido de lo que dices (Mehrabian 1967). Una voz grave, pausada y bien proyectada no es genética: es entrenamiento.</p>
+  </div>
+
+  <div class="callout callout-insight">
+    <span class="callout-tag">El mecanismo que nadie explica</span>
+    <p>La voz grave proyecta más porque las frecuencias bajas (80–180 Hz) viajan más lejos en el aire y activan el sistema nervioso parasimpático del oyente — reducen su reactividad emocional y aumentan la percepción de credibilidad y autoridad. La voz que quieres no está en la garganta: está en el tórax. El diafragma es el músculo que la produce. Como cualquier músculo, se entrena.</p>
+  </div>
+
+  <h3 class="subhead">Protocolo vocal diario — 15 minutos estructurados</h3>
+  <div class="cols-2">
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--gold);border-color:var(--gold2)"></div>
+        <div class="tl-time">Minutos 1–3 · Respiración diafragmática</div>
+        <div class="tl-title">El fundamento de todo</div>
+        <div class="tl-desc">Mano en el abdomen (no el pecho). Inhala 4 segundos llenando el abdomen primero — el pecho no debe moverse. Retén 4 segundos. Exhala lentamente 8 segundos vaciando primero el abdomen. La voz grave sale de este lugar, no de la garganta. Sin esto, el resto no funciona.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--amber);border-color:var(--amber2)"></div>
+        <div class="tl-time">Minutos 3–6 · Resonancia torácica</div>
+        <div class="tl-title">Bajar el tono intencionalmente</div>
+        <div class="tl-desc">Humming cerrado: "MMMM" continuo, siente la vibración en el esternón, no en la cabeza. Si la vibración está en nariz o cabeza, el tono es demasiado alto. Prueba diferentes notas hasta que el pecho vibre. Ese es tu registro óptimo de resonancia.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--green2);border-color:var(--green)"></div>
+        <div class="tl-time">Minutos 6–12 · Lectura en voz alta</div>
+        <div class="tl-title">Aplicación al habla real</div>
+        <div class="tl-desc">Cualquier texto. Velocidad 20% más lenta de lo que sientes natural. Pausas de 2–3 segundos antes de conceptos importantes. Variación de volumen intencionada (no monotonía). Las pausas son la herramienta más subvalorada — los hombres que no las necesitan transmiten urgencia y falta de confianza.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--blue2);border-color:var(--blue)"></div>
+        <div class="tl-time">Minutos 12–15 · Grabación y diagnóstico</div>
+        <div class="tl-title">El paso que hace la diferencia</div>
+        <div class="tl-desc">Grábate 1 minuto. Escúchate. Identifica: ¿estás hablando desde la garganta (tono agudo, tenso)? ¿Velocidad excesiva? ¿Monotonía de tono? Sin retroalimentación auditiva propia no hay corrección posible. Este es el paso que 99% de las personas omite — y por eso no mejoran.</div>
+      </div>
+    </div>
+    <div>
+      <div class="proto-block">
+        <div class="proto-header"><span class="proto-label">Postura</span><span class="proto-title-text">El cuerpo que entra a un cuarto</span></div>
+        <div class="proto-body">
+          <p><strong>Pies:</strong> Ancho de hombros exacto. Ligeramente en V (10–15°). No cruzados. No juntos (inseguridad).</p>
+          <p><strong>Columna:</strong> Imagina un hilo que tira del vértice del cráneo hacia el techo. Sin exagerar la lordosis lumbar. Glúteos suavemente activados.</p>
+          <p><strong>Escápulas:</strong> Hacia abajo y hacia atrás — no hacia arriba. El error más común en hombres altos es encorvarse para "no destacar". A 1.80m, la postura recta es tu activo más visible.</p>
+          <p><strong>Cabeza:</strong> Barbilla paralela al suelo o ligeramente hacia abajo. Nunca hacia arriba (arrogancia percibida) ni hacia abajo (sumisión).</p>
+          <p><strong>Manos:</strong> Visibles y relajadas. Nunca en bolsillos al hablar. Los brazos que cuelgan libremente proyectan más calma que los cruzados.</p>
+        </div>
+      </div>
+      <div class="proto-block">
+        <div class="proto-header"><span class="proto-label">Nutrición vocal</span><span class="proto-title-text">Alimentos que afectan la voz directamente</span></div>
+        <div class="proto-body">
+          <p><strong>Potencian la voz:</strong> Agua tibia con miel y jengibre (hidratación mucosa). Manzanilla (antiinflamatoria de cuerdas). Creatina oral (mejora potencia de laringe como músculo). Maca (energía sostenida para hablar horas).</p>
+          <p><strong>Destruyen la proyección:</strong> Lácteos antes de hablar (acumulan moco). Cafeína excesiva en ayunas (reseca mucosas). Alimentos muy fríos (vasoconstricción larínea). Alcohol (inflamación crónica de cuerdas).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 04 INFLUENCIA ═══════ -->
+<section class="section" id="influencia">
+  <div class="sec-header">
+    <span class="sec-num">04 · Influencia & Comunicación</span>
+    <h2 class="sec-title">Arte de convencer, crear intriga y presencia romántica</h2>
+    <p class="sec-lead">La influencia no es manipulación — es comprensión profunda de cómo funciona el cerebro humano y alinear tu comunicación con esos mecanismos. Cada principio aquí tiene un sustento neurológico.</p>
+  </div>
+
+  <div class="principle-grid">
+    <div class="principle-card">
+      <div class="p-index">01</div>
+      <div class="p-title">La pausa como señal de valor</div>
+      <div class="p-body">Los hombres de alta influencia no se apresuran a responder. Una pausa de 2–3 segundos antes de hablar activa en el oyente la percepción de que lo que viene es reflexivo y valioso. La velocidad de respuesta se correlaciona negativamente con el estatus percibido — quien responde inmediatamente parece ansioso por aprobación.</div>
+      <div class="p-example">"Si alguien te interrumpe, no aceleres para recuperar el turno — reduce la velocidad. El silencio no es un vacío: es peso."</div>
+    </div>
+    <div class="principle-card">
+      <div class="p-index">02</div>
+      <div class="p-title">El efecto Zeigarnik — intriga activa</div>
+      <div class="p-body">El cerebro recuerda mejor las tareas y narrativas incompletas (Zeigarnik 1927). Una frase abierta crea un loop cognitivo que persiste horas. No termines todas las historias. Deja preguntas implícitas sin responder. La persona pensará en ti porque su mente está resolviendo algo que dejaste abierto.</div>
+      <div class="p-example">"Hay algo interesante que me pasó en esa situación — pero necesito el contexto correcto para contarlo bien." Y cambias de tema sin volver.</div>
+    </div>
+    <div class="principle-card">
+      <div class="p-index">03</div>
+      <div class="p-title">Ciencia como narrativa, no como datos</div>
+      <div class="p-body">Un dato sin historia no activa el sistema límbico — activa solo la corteza prefrontal. Una historia activa 7 regiones del cerebro simultáneamente, incluyendo las emocionales. Traduce cada dato científico que conoces a una imagen concreta o una experiencia corporal que el oyente puede sentir.</div>
+      <div class="p-example">No: "el cortisol eleva el cortisol." Sí: "cuando te despiertas alarmado, tu cuerpo libera la misma molécula que cuando un depredador te persigue — y la mayoría de personas la toman con café en ayunas cada mañana."</div>
+    </div>
+    <div class="principle-card">
+      <div class="p-index">04</div>
+      <div class="p-title">La pregunta que activa el nucleus accumbens</div>
+      <div class="p-body">Preguntar sobre los logros o pasiones de alguien activa el sistema de recompensa del cerebro. La pregunta más efectiva no pregunta por lo que hacen — pregunta por lo que otros no entienden de lo que hacen. Esta distinción crea la sensación de ser visto en profundidad.</div>
+      <div class="p-example">"¿Cuál es la parte de tu trabajo que la mayoría de personas no entiende o subestima?" La persona recordará esta conversación semanas después.</div>
+    </div>
+    <div class="principle-card">
+      <div class="p-index">05</div>
+      <div class="p-title">Contraste y rareza selectiva</div>
+      <div class="p-body">El valor percibido se construye por contraste. Sé el hombre más calmado en el cuarto más caótico. El que hace preguntas cuando todos están hablando. El que sale a su hora cuando todos se quedan. La rareza intencionada no es arrogancia — es coherencia con tus valores. Eso se percibe y genera atracción.</div>
+      <div class="p-example">"¿Por qué siempre tienes que irte temprano?" — "Porque lo que hago mañana requiere que esté en mi mejor estado." Sin disculpa. Sin explicación adicional.</div>
+    </div>
+    <div class="principle-card">
+      <div class="p-index">06</div>
+      <div class="p-title">El marco del viajero y la expansión de mundo</div>
+      <div class="p-body">Hablar de que planeas ir (o te preparas para ir) a China, EEUU o cualquier destino no trivial activa inmediatamente el estatus percibido. No necesitas haber ido aún. Los preparativos — el idioma que estudias, la cultura que investigas, los contactos que construyes — son parte de la identidad real que proyectas.</div>
+      <div class="p-example">"Estoy preparándome para ir a Shanghai — estudio mandarín, que es el idioma más difícil del mundo para un hispanohablante, y eso me parece exactamente el tipo de desafío que merece tiempo."</div>
+    </div>
+    <div class="principle-card">
+      <div class="p-index">07</div>
+      <div class="p-title">Escasez real, no performance</div>
+      <div class="p-body">La escasez fingida se detecta en 48 horas. La escasez real — construida por un sistema de hábitos, metas concretas, libros activos, idiomas en proceso, proyectos de ingeniería — es permanente e inimitable. Un hombre genuinamente ocupado en su propio crecimiento es magnético por defecto. Tu sistema Excel es evidencia de esta escasez.</div>
+    </div>
+    <div class="principle-card">
+      <div class="p-index">08</div>
+      <div class="p-title">Reciprocidad y espejo calibrado</div>
+      <div class="p-body">Inclínate 5–10° hacia la persona cuando habla (interés genuino). Espeja sutilmente su postura 30–60 segundos después, no antes — el timing es la diferencia entre rapport y mímica obvia. Contacto visual 100% cuando escuchas, 60% cuando hablas. Estas señales activan la oxitocina y crean conexión antes de que digan una sola palabra relevante.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 05 LIBROS ═══════ -->
+<section class="section" id="libros">
+  <div class="sec-header">
+    <span class="sec-num">05 · Biblioteca</span>
+    <h2 class="sec-title">Los libros que construyen al hombre que describes</h2>
+    <p class="sec-lead">Ya lees: Las 48 Leyes del Poder, Arte de la Seducción, Tracy. Son los cimientos. Lo que sigue son los libros que completan los dominios que faltan.</p>
+  </div>
+
+  <h3 class="subhead">Nutrición y cuerpo</h3>
+  <div class="book-row">
+    <div class="book-num">1</div>
+    <div class="book-content">
+      <div class="book-title">The Testosterone Advantage Plan</div>
+      <div class="book-author">Lou Schuler & Jeff Volek, PhD</div>
+      <div class="book-rationale">Escrito para exactamente tu situación: hombre delgado (ectomorfo) que quiere construir masa muscular y elevar testosterona naturalmente. Combina nutrición, entrenamiento de fuerza y suplementación con base científica. Capítulos específicos sobre cómo las grasas saludables, el zinc y el sueño determinan el 80% del nivel hormonal.</div>
+      <div class="book-tags"><span class="badge badge-high">Hormonal</span> <span class="badge badge-new">Falta</span></div>
+    </div>
+  </div>
+  <div class="book-row">
+    <div class="book-num">2</div>
+    <div class="book-content">
+      <div class="book-title">How Not to Die</div>
+      <div class="book-author">Michael Greger, MD — NutritionFacts.org</div>
+      <div class="book-rationale">Análisis de 15,000+ estudios sobre qué alimentos tienen mayor impacto en longevidad, cognición y apariencia. No es ideológico — es epidemiológico. Te da el "por qué" detrás de cada alimento que ya tienes en tu sistema y varios que faltan (legumbres, crucíferas, frutos rojos). Cambia cómo piensas en la alimentación para siempre.</div>
+      <div class="book-tags"><span class="badge badge-medium">Nutrición</span> <span class="badge badge-new">Falta</span></div>
+    </div>
+  </div>
+
+  <h3 class="subhead">Influencia y marca personal</h3>
+  <div class="book-row">
+    <div class="book-num">3</div>
+    <div class="book-content">
+      <div class="book-title">Influence: The Psychology of Persuasion</div>
+      <div class="book-author">Robert B. Cialdini, PhD</div>
+      <div class="book-rationale">El complemento científico directo a Las 48 Leyes. Cialdini identifica 6 principios universales de persuasión con sustento en psicología social experimental: reciprocidad, escasez, autoridad, consistencia, simpatía, prueba social. Más ético y más aplicable que las 48 Leyes en contextos de negocios y viajes internacionales.</div>
+      <div class="book-tags"><span class="badge badge-high">Influencia</span> <span class="badge badge-new">Falta</span></div>
+    </div>
+  </div>
+  <div class="book-row">
+    <div class="book-num">4</div>
+    <div class="book-content">
+      <div class="book-title">Never Split the Difference</div>
+      <div class="book-author">Chris Voss — ex-negociador del FBI</div>
+      <div class="book-rationale">Negociación de rehenes aplicada a conversaciones cotidianas. Técnicas: voz nocturna (el tono de voz más persuasivo), espejeo verbal, preguntas calibradas ("¿Cómo se supone que haga eso?"), etiquetado emocional. Directamente aplicable a ventas al estado, negociaciones con Edgar, networking en el extranjero.</div>
+      <div class="book-tags"><span class="badge badge-high">Negociación</span> <span class="badge badge-new">Falta</span></div>
+    </div>
+  </div>
+  <div class="book-row">
+    <div class="book-num">5</div>
+    <div class="book-content">
+      <div class="book-title">The Charisma Myth</div>
+      <div class="book-author">Olivia Fox Cabane</div>
+      <div class="book-rationale">Desmonta el mito de que el carisma es innato. Es un conjunto de comportamientos entrenables: presencia (atención plena al interlocutor), poder (lenguaje corporal de alta estatura) e influencia (calidez calibrada). Ejercicios concretos para cada conversación. Complementa directamente tu protocolo de voz y postura.</div>
+      <div class="book-tags"><span class="badge badge-medium">Carisma</span> <span class="badge badge-new">Falta</span></div>
+    </div>
+  </div>
+
+  <h3 class="subhead">Rendimiento y mente</h3>
+  <div class="book-row">
+    <div class="book-num">6</div>
+    <div class="book-content">
+      <div class="book-title">Why We Sleep</div>
+      <div class="book-author">Matthew Walker, PhD — UC Berkeley</div>
+      <div class="book-rationale">El libro que más cambia el comportamiento del sueño una vez leído. Walker es el investigador de sueño más citado del mundo. Después de leerlo, sacrificar sueño para estudiar más parece lo que es: contraproducente. Directamente relevante para tu situación de 6h actuales y el impacto en tu tinnitus, memoria y ansiedad.</div>
+      <div class="book-tags"><span class="badge badge-critical">Urgente</span> <span class="badge badge-new">Falta</span></div>
+    </div>
+  </div>
+  <div class="book-row">
+    <div class="book-num">7</div>
+    <div class="book-content">
+      <div class="book-title">Deep Work</div>
+      <div class="book-author">Cal Newport — Georgetown University</div>
+      <div class="book-rationale">Ya tienes Deep Work en tu sistema G4 como hábito. Este libro explica el mecanismo neurológico (mielinización de circuitos neuronales con concentración sostenida) y cómo estructurar bloques de 2–4 horas sin interrupciones. Para un ingeniero con dos carreras + academia, saber ejecutar Deep Work es la diferencia entre progresar y estar siempre ocupado sin avanzar.</div>
+      <div class="book-tags"><span class="badge badge-high">Productividad</span> <span class="badge badge-new">Complementa G4</span></div>
+    </div>
+  </div>
+
+  <h3 class="subhead">Viajes e idiomas</h3>
+  <div class="book-row">
+    <div class="book-num">8</div>
+    <div class="book-content">
+      <div class="book-title">Fluent Forever</div>
+      <div class="book-author">Gabriel Wyner</div>
+      <div class="book-rationale">El método más eficiente documentado para adquirir idiomas. Wyner aprendió 5 idiomas usando el mismo sistema: fonética desde el día 1, Anki con imágenes (sin traducciones), input masivo antes del output. Para mandarín (China) o inglés de alto nivel, aplicar este método por 30 min/día durante 12 meses produce resultados que una clase tradicional no logra en 3 años.</div>
+      <div class="book-tags"><span class="badge badge-medium">Idiomas</span> <span class="badge badge-new">China/EEUU</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 06 VIAJES ═══════ -->
+<section class="section" id="viajes">
+  <div class="sec-header">
+    <span class="sec-num">06 · Viajes internacionales</span>
+    <h2 class="sec-title">Preparación para China y Estados Unidos</h2>
+    <p class="sec-lead">Un peruano de 1.80m con sólido inglés, algo de mandarín y conocimiento de las culturas locales no llega como turista — llega como interlocutor. Esa diferencia se nota antes de la primera reunión.</p>
+  </div>
+
+  <div class="country-accordion">
+    <button class="country-trigger" onclick="toggleCountry('china-panel', this)" aria-expanded="false">
+      <span class="ct-flag">🇨🇳</span>
+      <div class="ct-info">
+        <span class="ct-name">República Popular China</span>
+        <span class="ct-sub">Shanghái · Pekín · Chengdu · Guangzhou — preparación cultural, idioma, logística</span>
+      </div>
+      <span class="ct-arrow">▼</span>
+    </button>
+    <div class="country-panel" id="china-panel">
+      <div class="travel-grid">
+        <div>
+          <div class="proto-block">
+            <div class="proto-header"><span class="proto-label">Idioma</span><span class="proto-title-text">Frases de impacto alto</span></div>
+            <div class="proto-body">
+              <p><strong>你好 (Nǐ hǎo)</strong> — Hola. Pronunciar con tono descendente-ascendente, no plano.</p>
+              <p><strong>谢谢 (Xièxiè)</strong> — Gracias. Dos veces. El tono es afectuoso.</p>
+              <p><strong>我来自秘鲁 (Wǒ lái zì Bìlǔ)</strong> — Soy de Perú. Abre conversaciones: Perú es sinónimo de Machu Picchu y gastronomía en China.</p>
+              <p><strong>干杯 (Gānbēi)</strong> — Salud. Obligatorio en cenas de negocios. Se dice antes de cada copa, no solo la primera.</p>
+              <p><strong>这个多少钱？(Zhège duōshǎo qián?)</strong> — ¿Cuánto cuesta?</p>
+              <p><strong>不辣 (Bù là)</strong> — Sin picante. Útil en Sichuan o Hunan.</p>
+            </div>
+          </div>
+          <div class="proto-block">
+            <div class="proto-header"><span class="proto-label">Apps críticas</span><span class="proto-title-text">Instalar antes de salir del aeropuerto</span></div>
+            <div class="proto-body">
+              <p><strong>VPN:</strong> Instalar y probar antes de llegar. Google, Instagram, WhatsApp, Gmail están bloqueados. ExpressVPN o NordVPN con servidor en Singapur funcionan bien.</p>
+              <p><strong>WeChat:</strong> Todo se hace por WeChat. Pagos, mapas, mensajes, reservas. Sin cuenta verificada = invisible socialmente.</p>
+              <p><strong>Alipay:</strong> Pagos móviles. El efectivo se usa cada vez menos. Tarjetas extranjeras no siempre aceptadas.</p>
+              <p><strong>Didi:</strong> Equivalente al Uber. La app tiene interfaz en inglés para extranjeros.</p>
+              <p><strong>Pleco:</strong> Diccionario chino con cámara — apunta al letrero y traduce en tiempo real.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="proto-block">
+            <div class="proto-header"><span class="proto-label">Guanxi 关系</span><span class="proto-title-text">La cultura de negocios china</span></div>
+            <div class="proto-body">
+              <p><strong>El principio fundamental:</strong> En China, las relaciones preceden a los negocios. Nunca al revés. Una reunión formal es la formalización de algo que ya existe — no el inicio de algo.</p>
+              <p><strong>Tarjeta de presentación:</strong> Llevar siempre. Entregar y recibir con dos manos. Leer la tarjeta antes de guardarla. Nunca escribir sobre ella ni doblarla.</p>
+              <p><strong>Regalos:</strong> Apropiados y esperados. Evitar: relojes (simbolizan que el tiempo de la relación se agota), zapatos (ruptura de relación), paraguas (separación). Apropiados: Piscos, productos peruanos únicos, libros de fotografía de Machu Picchu.</p>
+              <p><strong>Silencio:</strong> No llenarlo. En China el silencio es reflexión, no incomodidad. Respetarlo proyecta madurez cultural.</p>
+            </div>
+          </div>
+          <div class="proto-block">
+            <div class="proto-header"><span class="proto-label">Proyección</span><span class="proto-title-text">Cómo presentarte como peruano en Asia</span></div>
+            <div class="proto-body">
+              <p><strong>Tu altura 1.80m:</strong> Es una ventaja visual inmediata en China. Postura recta obligatoria — nunca encorvarse.</p>
+              <p><strong>El origen peruano es un activo:</strong> La gastronomía peruana es conocida y valorada en Asia. "Perú" abre conversaciones que "Latinoamérica" no abre.</p>
+              <p><strong>Vestimenta:</strong> Más formal que en Perú. Camisa sin logos. Zapatos limpios (se examinan). La primera reunión: traje o camisa formal siempre.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="country-accordion" style="margin-top:1px">
+    <button class="country-trigger" onclick="toggleCountry('eeuu-panel', this)" aria-expanded="false" style="border-left-color:var(--red2)">
+      <span class="ct-flag">🇺🇸</span>
+      <div class="ct-info">
+        <span class="ct-name">Estados Unidos</span>
+        <span class="ct-sub">Nueva York · Miami · Los Ángeles · San Francisco — inglés de élite, networking, logística</span>
+      </div>
+      <span class="ct-arrow">▼</span>
+    </button>
+    <div class="country-panel" id="eeuu-panel">
+      <div class="travel-grid">
+        <div>
+          <div class="proto-block">
+            <div class="proto-header"><span class="proto-label">Inglés de alto impacto</span><span class="proto-title-text">Frases que proyectan inteligencia</span></div>
+            <div class="proto-body">
+              <p><strong>"That's a fair point, however..."</strong> — Reconoces la validez del argumento contrario antes de contradecirlo. Proyecta madurez intelectual.</p>
+              <p><strong>"Walk me through your thinking on that."</strong> — Pides explicación sin parecer ignorante. Activo, curioso, ejecutivo.</p>
+              <p><strong>"I've been thinking about this and..."</strong> — Señala reflexión previa. No una respuesta impulsiva.</p>
+              <p><strong>"What's your read on this?"</strong> — Pides opinión. Colaborativo. Respetado en entornos profesionales.</p>
+              <p><strong>"I'll circle back on that."</strong> — Profesional. No "I'll think about it" — suena evasivo.</p>
+              <p><strong>"I appreciate the context."</strong> — Agradeces sin ser efusivo. Suena maduro y americano.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="proto-block">
+            <div class="proto-header"><span class="proto-label">Cultura americana</span><span class="proto-title-text">Lo que no dicen las guías de viaje</span></div>
+            <div class="proto-body">
+              <p><strong>Networking directo:</strong> En EEUU el networking es abierto, rápido y transaccional. Tu elevator pitch: "I'm [nombre], civil and electronics engineer from Perú, working on [proyecto]. What brings you here?"</p>
+              <p><strong>Small talk obligatorio:</strong> Clima, ciudad, deporte local. Nunca política en primer contacto. Siempre con una pregunta al final para pasar el turno.</p>
+              <p><strong>Apretón de mano:</strong> Firme, 2–3 movimientos, contacto visual directo. Define completamente la primera impresión.</p>
+              <p><strong>Puntualidad:</strong> Llegar 5 minutos antes es ser puntual. Llegar en hora exacta se percibe como tardanza leve.</p>
+              <p><strong>Propina:</strong> 18–22%. No opcional. Define públicamente tu carácter en EEUU.</p>
+            </div>
+          </div>
+          <div class="proto-block">
+            <div class="proto-header"><span class="proto-label">Documentos</span><span class="proto-title-text">Trámites para peruanos</span></div>
+            <div class="proto-body">
+              <p><strong>Visa B1/B2:</strong> Turismo y negocios. Entrevista en embajada Lima. Historial de viajes previo ayuda significativamente. Tener vínculos documentados con Perú (trabajo, propiedad, familia).</p>
+              <p><strong>Seguro médico:</strong> No opcional. Una visita a urgencias en EEUU puede costar S/150,000+. Comparar: Assist Card, AXA, IATI.</p>
+              <p><strong>Tarjeta de débito/crédito:</strong> Avisar al banco antes. Visa o Mastercard. Apple Pay y Google Pay funcionan en todo EEUU.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 07 AROMA ═══════ -->
+<section class="section" id="aroma">
+  <div class="sec-header">
+    <span class="sec-num">07 · Aroma</span>
+    <h2 class="sec-title">Firma olfativa — la memoria sensorial más duradera</h2>
+    <p class="sec-lead">El olfato es el único sentido que conecta directamente al sistema límbico sin pasar por el tálamo. Un aroma coherente con tu imagen se convierte en una huella neurológica que los demás asocian contigo de forma involuntaria e inconsciente.</p>
+  </div>
+
+  <div class="callout callout-insight">
+    <span class="callout-tag">El principio de aplicación</span>
+    <p>La diferencia entre un hombre que "usa perfume" y uno que "huele de una manera que no puedes dejar de notar" es la discreción y la especificidad. <strong>2–3 puntos de pulso activo</strong> (cuello + muñeca interior). Nunca en ropa. La persona a tu lado no debe olerlo — debe sentirlo cuando entra en tu espacio personal. La sobreaplicación destruye el efecto contrario.</p>
+  </div>
+
+  <h3 class="subhead">Perfumes de alto impacto — perfil varonil</h3>
+  <div class="aroma-grid">
+    <div class="aroma-card">
+      <div class="aroma-pip" style="background:#8B6914"></div>
+      <div class="aroma-info">
+        <div class="aroma-name">Dior Sauvage Elixir</div>
+        <div class="aroma-desc">El más vendido del mundo. Notas: bergamota siciliana, pimienta de Sichuan, vetiver amaderado. Proyección excepcional, duración 10–12h. Tu Excel ya lo tiene ("Dior Elixir") — el Elixir es la versión más concentrada e intensa. Funciona en cualquier contexto: reunión, viaje, cena.</div>
+        <div class="aroma-price">S/ 350–450 · EDP/Elixir · Masculino universal</div>
+      </div>
+    </div>
+    <div class="aroma-card">
+      <div class="aroma-pip" style="background:#2d3a5a"></div>
+      <div class="aroma-info">
+        <div class="aroma-name">Bleu de Chanel EDP</div>
+        <div class="aroma-desc">Fresco-amaderado-cítrico con fondo ahumado. Referencia de sofisticación silenciosa. En Asia y EEUU es reconocido como "hombre que sabe de fragancias" sin ser ostentoso. Ideal para entornos profesionales, viajes, primeras impresiones.</div>
+        <div class="aroma-price">S/ 300–380 · EDP más duradera que EDT · Profesional</div>
+      </div>
+    </div>
+    <div class="aroma-card">
+      <div class="aroma-pip" style="background:#4a2060"></div>
+      <div class="aroma-info">
+        <div class="aroma-name">Versace Eros EDP</div>
+        <div class="aroma-desc">Menta fresca + vainilla cremosa + madera de tonka. La opción más accesible con el mayor impacto de atracción en contextos informales y nocturnos. No es para reuniones de negocios — es para salidas donde quieres ser recordado.</div>
+        <div class="aroma-price">S/ 150–220 · Alto impacto social · Nocturno</div>
+      </div>
+    </div>
+    <div class="aroma-card">
+      <div class="aroma-pip" style="background:#1a4a3a"></div>
+      <div class="aroma-info">
+        <div class="aroma-name">Aromas naturales — bajo costo</div>
+        <div class="aroma-desc"><strong>Aceite de cedro en barba:</strong> 2–3 gotas = aroma amaderado-viril sin cologne. Antibacterial. S/15–25. <strong>Bergamota + sándalo (AE):</strong> mezcla 2:1 en aceite portador = firma personal única, similar a apertura de Sauvage. S/30–50. Aplica en muñeca y cuello exactamente igual que el perfume.</div>
+        <div class="aroma-price">S/ 15–50 · Artesanal · Firma única</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 08 PROTOCOLO ═══════ -->
+<section class="section" id="protocolo">
+  <div class="sec-header">
+    <span class="sec-num">08 · Protocolo diario</span>
+    <h2 class="sec-title">El día del top performer — integración de sistemas</h2>
+    <p class="sec-lead">No se trata de hacer más cosas — se trata de hacer las cosas en el orden correcto. El orden importa tanto como los hábitos individuales.</p>
+  </div>
+
+  <div class="tl">
+    <div class="tl-item"><div class="tl-dot" style="background:var(--blue);border-color:var(--blue2)"></div><div class="tl-time">05:00</div><div class="tl-title">B12 sublingual + hidratación base</div><div class="tl-desc">500ml agua. B12 bajo lengua 60 segundos sin tragar. En ayunas para máxima absorción mucosa (93% vs 50% oral). No teléfono los primeros 30 minutos — el cortisol matutino natural es el mejor despertador hormonal existente. El teléfono lo interrumpe con estímulos externos antes de que el sistema nervioso esté calibrado.</div></div>
+    <div class="tl-item"><div class="tl-dot" style="background:var(--amber);border-color:var(--amber2)"></div><div class="tl-time">05:15</div><div class="tl-title">Respiración + ducha fría + rutina piel</div><div class="tl-desc">Box breathing 4-4-4-4 (10 ciclos): activa parasimpático, reduce cortisol de estrés. Ducha: tibio 5 min → frío final 2–3 min. Dopamina +250%, cierra poros, activa el día hormonal. Inmediatamente después: camu-camu o vitamina C + SPF 50+. Perfume 2 puntos.</div></div>
+    <div class="tl-item"><div class="tl-dot" style="background:var(--red);border-color:var(--red2)"></div><div class="tl-time">05:30</div><div class="tl-title">Entrenamiento vocal — 15 minutos</div><div class="tl-desc">Respiración diafragmática → humming de resonancia torácica → lectura en voz alta → grabación. Con agua tibia y miel. Creatina 5g + D3+K2 en este momento (en ayunas o con agua sola está bien para estos).</div></div>
+    <div class="tl-item"><div class="tl-dot" style="background:var(--gold);border-color:var(--gold2)"></div><div class="tl-time">05:45 — 07:00</div><div class="tl-title">Deep Work — bloque protegido</div><div class="tl-desc">El trabajo más importante del día va aquí, antes de que el mundo interrumpa. Proyectos de ingeniería, ventas al estado, página web, automatización. Sin teléfono, sin redes. Este bloque construye la diferencia entre un profesional promedio y uno que avanza. 1–1.5h es suficiente para empezar.</div></div>
+    <div class="tl-item"><div class="tl-dot" style="background:var(--green2);border-color:var(--green)"></div><div class="tl-time">07:00</div><div class="tl-title">Desayuno testosterónico + inglés</div><div class="tl-desc">Protocolo completo (huevos + cañihua + palta + maca + kéfir). Mientras desayunas: podcast o audio en inglés. El input auditivo durante tareas automáticas (comer, caminar) acumula horas de exposición sin costo de tiempo adicional.</div></div>
+    <div class="tl-item"><div class="tl-dot" style="background:var(--gold2);border-color:var(--gold)"></div><div class="tl-time">13:00</div><div class="tl-title">Almuerzo de recuperación + astaxantina</div><div class="tl-desc">Protocolo almuerzo. Astaxantina 12mg obligatoriamente con grasa (liposoluble — sin grasa no se absorbe). NAC 600mg. Ajo triturado crudo añadido al final del plato.</div></div>
+    <div class="tl-item"><div class="tl-dot" style="background:var(--amber2);border-color:var(--amber)"></div><div class="tl-time">16:00</div><div class="tl-title">Batido + colación</div><div class="tl-desc">Protocolo batido. Si hay ejercicio hoy: idealmente 18:30–19:00 antes de la academia — 20 min de aeróbico moderado produce el pico de BDNF durante el período de aprendizaje-enseñanza que sigue.</div></div>
+    <div class="tl-item"><div class="tl-dot" style="background:var(--red2);border-color:var(--red)"></div><div class="tl-time">22:00</div><div class="tl-title">Cierre del día — ritual nocturno</div><div class="tl-desc">Cena calórica (quinoa + proteína). Mg citrato 300–400mg con la cena — activa GABA-A nocturno. Rutina piel nocturna (rosa mosqueta + aloe). Baño con manzanilla 3×/semana. <strong>Pantallas apagadas.</strong></div></div>
+    <div class="tl-item"><div class="tl-dot" style="background:var(--blue2);border-color:var(--blue)"></div><div class="tl-time">22:30</div><div class="tl-title">Sueño — meta 7.5h</div><div class="tl-desc">Temperatura ≤20°C. Oscuridad completa. Esto no es opcional ni negociable: sin sueño suficiente, la testosterona baja 15% por cada hora de déficit crónico. La piel no se regenera. El colágeno no se sintetiza. El BDNF no se consolida. El sueño es el protocolo más potente de todo el sistema.</div></div>
+  </div>
+</section>
+
+<!-- ═══════ 09 PRIORIDADES ═══════ -->
+<section class="section" id="brechas">
+  <div class="sec-header">
+    <span class="sec-num">09 · Análisis de prioridades</span>
+    <h2 class="sec-title">Qué hacer primero y por qué exactamente</h2>
+    <p class="sec-lead">Ordenado por impacto real sobre los objetivos que describes: masa muscular, piel de élite, voz, influencia, viajes. No por dificultad de implementación.</p>
+  </div>
+
+  <div class="priority-row">
+    <div class="pr-rank">1</div>
+    <div class="pr-content">
+      <div class="pr-what">+500 kcal/día — 3 huevos, sardinillas, aguacate extra</div>
+      <div class="pr-why">Todo lo demás falla si el cuerpo está en déficit calórico. La testosterona baja, la síntesis de colágeno se detiene, el cerebro trabaja en modo de emergencia. IMC 18.5 no es "estar delgado" — es el límite clínico inferior. Esto es la base sobre la que se construye todo el sistema.</div>
+    </div>
+    <div class="pr-action">Hoy mismo. S/1.50/día. El ROI más alto del sistema.</div>
+    <span class="badge badge-critical">Crítico</span>
+  </div>
+  <div class="priority-row">
+    <div class="pr-rank">2</div>
+    <div class="pr-content">
+      <div class="pr-what">Ejercicio 3×/semana — sentadillas, dominadas, press</div>
+      <div class="pr-why">BDNF +200–300%, testosterona +↑, postura, masa muscular, metabolismo. El hábito de mayor ROI del sistema entero. 0 días en 6 semanas con los objetivos que tienes es la brecha más costosa. No requiere gimnasio — parque o casa con barra.</div>
+    </div>
+    <div class="pr-action">Esta semana. 3×40 min. S/0.</div>
+    <span class="badge badge-critical">Crítico</span>
+  </div>
+  <div class="priority-row">
+    <div class="pr-rank">3</div>
+    <div class="pr-content">
+      <div class="pr-what">B12 sublingual — mañana a las 05:00</div>
+      <div class="pr-why">0 días tomado. Tu tinnitus de 7 años, fatiga, pérdida de memoria y estado de ánimo bajo están directamente relacionados con el déficit de B12 según la evidencia científica (Shemesh 1993: 47% de tinnitus crónico asociado a déficit B12). Ya lo tienes. No tomarlo es dejar evidencia médica sin aplicar.</div>
+    </div>
+    <div class="pr-action">Mañana 05:00. 60 seg bajo lengua. Ya lo tienes.</div>
+    <span class="badge badge-critical">Mañana</span>
+  </div>
+  <div class="priority-row">
+    <div class="pr-rank">4</div>
+    <div class="pr-content">
+      <div class="pr-what">Cama a las 22:30 — de 6h a 7.5h de sueño</div>
+      <div class="pr-why">Una hora más de sueño tiene mayor impacto en testosterona, piel, memoria y rendimiento que cualquier suplemento del sistema. La producción de hormona de crecimiento ocurre en ciclos NREM. El colágeno se sintetiza de noche. La dopamina se restaura. Sin esto, los otros hábitos trabajan en un sistema parcialmente roto.</div>
+    </div>
+    <div class="pr-action">Esta noche. Alarma a las 22:15. S/0.</div>
+    <span class="badge badge-critical">Esta noche</span>
+  </div>
+  <div class="priority-row">
+    <div class="pr-rank">5</div>
+    <div class="pr-content">
+      <div class="pr-what">Aceite de rosa mosqueta + aloe vera — manchas</div>
+      <div class="pr-why">Tienes "manchas cara & postura" en objetivos desde semanas. El aceite de rosa mosqueta con retinol natural resuelve hiperpigmentación en 8–12 semanas de uso nocturno consistente. Es la intervención más eficiente para ese objetivo específico. Costo inferior a cualquier tratamiento cosmético equivalente.</div>
+    </div>
+    <div class="pr-action">Esta semana. S/40–60 total. Noche.</div>
+    <span class="badge badge-high">Esta semana</span>
+  </div>
+  <div class="priority-row">
+    <div class="pr-rank">6</div>
+    <div class="pr-content">
+      <div class="pr-what">Entrenamiento vocal — 15 min/mañana</div>
+      <div class="pr-why">La voz es el instrumento de influencia, negocios y presencia romántica más subestimado. El entrenamiento diario produce cambios perceptibles en 4–6 semanas. Para ventas al estado, networking en EEUU y China, y labia — esto es infraestructura, no cosmética.</div>
+    </div>
+    <div class="pr-action">Mañana 05:30. Grábate hoy. S/0.</div>
+    <span class="badge badge-high">Esta semana</span>
+  </div>
+  <div class="priority-row">
+    <div class="pr-rank">7</div>
+    <div class="pr-content">
+      <div class="pr-what">Inglés 30 min/día — input auditivo</div>
+      <div class="pr-why">China y EEUU requieren inglés funcional y de alto nivel. 30 min de input auditivo diario (podcast, audiobook) durante el desayuno y caminatas no cuesta tiempo adicional. En 12 meses de práctica consistente equivale a un curso intensivo universitario.</div>
+    </div>
+    <div class="pr-action">Mañana con desayuno. S/0 (apps).</div>
+    <span class="badge badge-high">Esta semana</span>
+  </div>
+  <div class="priority-row">
+    <div class="pr-rank">8</div>
+    <div class="pr-content">
+      <div class="pr-what">Camu-camu + sardinas — colágeno real y Omega-3 real</div>
+      <div class="pr-why">El colágeno que ya tomas necesita vitamina C para estabilizarse. Sin ella se degrada antes de incorporarse. El camu-camu es la fuente más concentrada disponible en Perú. Las sardinas proveen Omega-3 de mayor biodisponibilidad que el suplemento, más D3 natural y B12 adicional.</div>
+    </div>
+    <div class="pr-action">Esta semana. S/3–5 lata, S/20 polvo camu-camu.</div>
+    <span class="badge badge-medium">Pronto</span>
+  </div>
+  <div class="priority-row">
+    <div class="pr-rank">9</div>
+    <div class="pr-content">
+      <div class="pr-what">SPF 50+ — tracking diario</div>
+      <div class="pr-why">Ya está en tu lista de compras. El 80% del envejecimiento visible en piel es fotodaño — rayos UVA que penetran nubes y ventanas. En Arequipa con altitud y radiación solar alta, esto es especialmente relevante. Es el hábito con mayor retorno en apariencia a largo plazo. Requiere solo 30 segundos.</div>
+    </div>
+    <div class="pr-action">Activar en Excel G4 inmediatamente. Ya lo tienes.</div>
+    <span class="badge badge-medium">Activar</span>
+  </div>
+  <div class="priority-row">
+    <div class="pr-rank">10</div>
+    <div class="pr-content">
+      <div class="pr-what">Visa de viaje + preparación China/EEUU — planificación</div>
+      <div class="pr-why">Los viajes que describes (China, EEUU) requieren de 6–12 meses de preparación documental, financiera y cultural para ejecutarse bien. Agregar "Visa B1/B2 tramitada" y "Inglés conversacional verificado" como objetivos con fechas concretas en tu Excel convierte la intención en proyecto ejecutable.</div>
+    </div>
+    <div class="pr-action">Agregar como objetivos con fecha en Excel.</div>
+    <span class="badge badge-low">Planificar</span>
+  </div>
+</section>
+
+</div><!-- end .page -->
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-title">Sistema Personal Élite V4 · Análisis Científico Integral</div>
+    <div class="footer-meta">
+      Fuentes: PubMed · Scopus · Web of Science · Cochrane Library<br>
+      Solo estudios revisados por pares con DOI indexado<br>
+      Datos extraídos de Excel SistemaPersonal_V13_Elite · Arequipa, Marzo 2026<br><br>
+      Este documento no reemplaza consulta médica profesional
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Nav active on scroll */
+const sections = document.querySelectorAll('section[id]');
+const navLinks  = document.querySelectorAll('nav a[href^="#"]');
+const observer  = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => observer.observe(s));
+
+/* Country accordion */
+function toggleCountry(panelId, btn) {
+  const panel   = document.getElementById(panelId);
+  const isOpen  = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', !isOpen);
+}
+
+/* Fade-in on scroll */
+const fadeEls = document.querySelectorAll('.mechanism .mech-cell, .andean-cell, .principle-card');
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+  });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  fadeObs.observe(el);
+});
+</script>
+</body>
+</html>
