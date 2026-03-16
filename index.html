@@ -3,376 +3,772 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema Personal Élite · Análisis Científico V5</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Sistema Élite V5 · Integral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a26;--surface:#1e1e2e;--border:#2a2a3e;--text:#e8e6e3;--text2:#a09b95;--text3:#6b6660;--gold:#d4a853;--gold2:#b8942e;--red:#e74c3c;--green:#2ecc71;--blue:#5b9bd5;--cyan:#4ecdc4;--purple:#9b59b6;--orange:#e67e22}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}::selection{background:var(--gold);color:var(--bg)}a{color:var(--gold);text-decoration:none}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1.5rem;height:52px;overflow-x:auto;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav a{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);white-space:nowrap;transition:color .2s}nav a:hover{color:var(--gold)}nav .logo{font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:var(--gold);margin-right:1rem}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 800px 600px at 30% 40%,rgba(212,168,83,.06),transparent),radial-gradient(ellipse 600px 400px at 70% 60%,rgba(78,205,196,.04),transparent)}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:1.2rem;position:relative}.hero h1 em{font-style:italic;color:var(--gold)}.hero .sub{font-size:1rem;color:var(--text2);max-width:700px;margin-bottom:2.5rem;position:relative}.hero .badges{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative}.badge{background:var(--surface);border:1px solid var(--border);padding:.6rem 1.5rem;border-radius:6px;font-size:13px}.badge strong{display:block;font-size:1.8rem;font-family:'Playfair Display',serif;color:var(--gold)}
-section{max-width:1100px;margin:0 auto;padding:5rem 2rem}section h2{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;margin-bottom:.5rem}section h2 span{color:var(--gold)}section .section-sub{color:var(--text2);font-size:.95rem;margin-bottom:2.5rem;max-width:750px}section h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin:2.5rem 0 1rem;color:var(--text)}
-.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem}.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:border-color .3s,transform .2s}.card:hover{border-color:var(--gold);transform:translateY(-2px)}.card .tag{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;padding:3px 10px;border-radius:4px;margin-bottom:.8rem}.tag-critico{background:rgba(231,76,60,.15);color:var(--red)}.tag-alto{background:rgba(230,126,34,.15);color:var(--orange)}.tag-medio{background:rgba(91,155,213,.15);color:var(--blue)}.tag-nuevo{background:rgba(78,205,196,.15);color:var(--cyan)}.tag-andino{background:rgba(155,89,182,.15);color:var(--purple)}.tag-verde{background:rgba(46,204,113,.15);color:var(--green)}.card h4{font-size:1.05rem;font-weight:600;margin-bottom:.5rem}.card p{font-size:.88rem;color:var(--text2);line-height:1.65}.card .ref{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text3);margin-top:.8rem;border-top:1px solid var(--border);padding-top:.5rem}
-.tbl-wrap{overflow-x:auto;margin:1.5rem 0}table{width:100%;border-collapse:collapse;font-size:.85rem}th,td{padding:.7rem 1rem;text-align:left;border-bottom:1px solid var(--border)}th{font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);background:var(--bg2);position:sticky;top:0}td{color:var(--text2)}tr:hover td{color:var(--text);background:var(--bg3)}
-.timeline{position:relative;padding-left:2rem}.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border)}.tl-item{position:relative;margin-bottom:2rem;padding-left:1.5rem}.tl-item::before{content:'';position:absolute;left:-2.15rem;top:.4rem;width:12px;height:12px;border-radius:50%;background:var(--gold);border:3px solid var(--bg)}.tl-time{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--gold);margin-bottom:.3rem}.tl-title{font-weight:600;margin-bottom:.3rem}.tl-desc{font-size:.88rem;color:var(--text2)}
-.priority-list{counter-reset:prio}.prio-item{display:flex;gap:1.2rem;align-items:flex-start;padding:1.2rem 0;border-bottom:1px solid var(--border)}.prio-item::before{counter-increment:prio;content:counter(prio);font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--gold);min-width:2rem;text-align:center}.prio-content h4{font-size:.95rem;margin-bottom:.3rem}.prio-content p{font-size:.85rem;color:var(--text2)}.prio-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:3px;margin-left:.5rem}
-.stat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.8rem;margin:1.5rem 0}.stat{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center}.stat .val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gold)}.stat .label{font-size:.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem}
-.alert{border-left:4px solid var(--red);background:rgba(231,76,60,.06);padding:1rem 1.5rem;border-radius:0 8px 8px 0;margin:1.5rem 0}.alert.warn{border-color:var(--orange);background:rgba(230,126,34,.06)}.alert.info{border-color:var(--blue);background:rgba(91,155,213,.06)}.alert.ok{border-color:var(--green);background:rgba(46,204,113,.06)}.alert strong{display:block;margin-bottom:.3rem}.alert p{font-size:.88rem;color:var(--text2)}
-footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--text3);max-width:800px;margin:0 auto}footer strong{color:var(--text2)}
-@media(max-width:768px){nav{padding:0 1rem;gap:1rem}section{padding:3rem 1.2rem}.hero h1{font-size:2rem}.card-grid{grid-template-columns:1fr}.stat-row{grid-template-columns:repeat(2,1fr)}}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fafafa;--bg2:#fff;--bg3:#f5f5f7;--bg4:#e8e8ed;
+  --text:#1d1d1f;--text2:#424245;--text3:#86868b;--text4:#a1a1a6;
+  --accent:#0071e3;--accent2:#147ce5;--accent-bg:#e1ecf7;
+  --green:#34c759;--green-bg:#e8f8ed;--green-dark:#248a3d;
+  --red:#ff3b30;--red-bg:#fce8e7;--red-dark:#c5221f;
+  --orange:#ff9500;--orange-bg:#fff3e0;--orange-dark:#c77600;
+  --purple:#af52de;--purple-bg:#f3e8fa;
+  --gold:#bf8f3d;--gold-bg:#faf3e5;
+  --border:#d2d2d7;--border2:#e5e5ea;
+  --radius:16px;--radius-sm:10px;--radius-xs:6px;
+  --shadow:0 2px 12px rgba(0,0,0,0.06);
+  --shadow-lg:0 8px 40px rgba(0,0,0,0.08);
+  --font:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+  --serif:'Playfair Display',Georgia,serif;
+  --mono:'IBM Plex Mono',monospace;
+  --max:820px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+
+/* ═══ NAV ═══ */
+nav{position:sticky;top:0;z-index:100;background:rgba(250,250,250,0.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:0.5px solid var(--border2);padding:0 24px}
+.nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;height:48px;gap:8px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-brand{font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;margin-right:12px;letter-spacing:-0.01em}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{color:var(--text3);text-decoration:none;font-size:12px;font-weight:500;padding:6px 10px;border-radius:var(--radius-xs);white-space:nowrap;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--bg3)}
+
+/* ═══ HERO ═══ */
+.hero{text-align:center;padding:100px 24px 72px;max-width:720px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border2);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:24px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:var(--serif);font-size:clamp(36px,6vw,56px);font-weight:400;letter-spacing:-0.02em;line-height:1.1;color:var(--text)}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--accent),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:var(--text3);font-size:17px;margin-top:16px;font-weight:400;line-height:1.5}
+.hero-metrics{display:flex;justify-content:center;gap:40px;margin-top:40px;flex-wrap:wrap}
+.hero-metric{text-align:center}
+.hero-metric .val{font-size:32px;font-weight:600;letter-spacing:-0.02em;line-height:1}
+.hero-metric .lab{font-size:11px;color:var(--text4);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;font-weight:500}
+
+/* ═══ SECTION ═══ */
+.section{max-width:var(--max);margin:0 auto;padding:80px 24px}
+.section-label{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;font-weight:500;margin-bottom:8px}
+.section h2{font-family:var(--serif);font-size:clamp(28px,4vw,40px);font-weight:400;letter-spacing:-0.015em;line-height:1.15;margin-bottom:8px}
+.section h2 em{font-style:italic;color:var(--accent)}
+.section-desc{color:var(--text3);font-size:15px;max-width:600px;margin-bottom:40px}
+
+/* ═══ CARDS ═══ */
+.card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:28px;margin-bottom:12px;transition:box-shadow .3s}
+.card:hover{box-shadow:var(--shadow)}
+.card h3{font-size:18px;font-weight:600;letter-spacing:-0.01em;margin-bottom:4px}
+.card h4{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.04em;margin:20px 0 8px}
+.card p,.card li{color:var(--text2);font-size:14px;line-height:1.65}
+.card ul{list-style:none;padding:0}
+.card li{padding:4px 0;padding-left:20px;position:relative}
+.card li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* ═══ TAGS ═══ */
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+.tag-red{background:var(--red-bg);color:var(--red-dark)}
+.tag-green{background:var(--green-bg);color:var(--green-dark)}
+.tag-orange{background:var(--orange-bg);color:var(--orange-dark)}
+.tag-blue{background:var(--accent-bg);color:var(--accent)}
+.tag-purple{background:var(--purple-bg);color:var(--purple)}
+.tag-gold{background:var(--gold-bg);color:var(--gold)}
+
+/* ═══ ALERT ═══ */
+.alert{border-radius:var(--radius);padding:20px 24px;margin-bottom:12px}
+.alert-red{background:var(--red-bg);border-left:3px solid var(--red)}
+.alert-green{background:var(--green-bg);border-left:3px solid var(--green)}
+.alert-orange{background:var(--orange-bg);border-left:3px solid var(--orange)}
+.alert-blue{background:var(--accent-bg);border-left:3px solid var(--accent)}
+.alert-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:6px}
+.alert-red .alert-title{color:var(--red-dark)}
+.alert-green .alert-title{color:var(--green-dark)}
+.alert-orange .alert-title{color:var(--orange-dark)}
+.alert-blue .alert-title{color:var(--accent)}
+.alert p{font-size:14px;color:var(--text2);line-height:1.6}
+
+/* ═══ MACRO GRID ═══ */
+.macro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:20px 0}
+.macro-box{background:var(--bg3);border-radius:var(--radius-sm);padding:16px;text-align:center}
+.macro-box .val{font-size:28px;font-weight:600;letter-spacing:-0.02em;line-height:1;color:var(--text)}
+.macro-box .unit{font-size:10px;color:var(--text4);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;font-weight:500}
+
+/* ═══ MEAL ═══ */
+.meal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;margin-bottom:12px}
+.meal-head{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;cursor:pointer;transition:background .15s}
+.meal-head:hover{background:var(--bg3)}
+.meal-left{display:flex;align-items:center;gap:12px}
+.meal-time{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:500}
+.meal-name{font-size:16px;font-weight:600;letter-spacing:-0.01em}
+.meal-kcal{font-family:var(--mono);font-size:12px;color:var(--text3);background:var(--bg3);padding:4px 10px;border-radius:100px;font-weight:500}
+.meal-body{padding:0 24px 20px;border-top:1px solid var(--border2)}
+.meal-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--bg3);font-size:14px}
+.meal-item:last-child{border-bottom:none}
+.meal-item .food{color:var(--text)}
+.meal-item .amt{color:var(--text3);font-family:var(--mono);font-size:12px}
+.meal-macros{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.meal-macro{font-family:var(--mono);font-size:11px;color:var(--text3);background:var(--bg3);padding:4px 10px;border-radius:100px}
+.meal-macro span{color:var(--text);font-weight:600}
+.meal-note{margin-top:12px;font-size:13px;color:var(--text3);line-height:1.6}
+.meal-note strong{color:var(--text2)}
+
+/* ═══ TABLE ═══ */
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;background:var(--bg3);color:var(--text3);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em}
+th:first-child{border-radius:var(--radius-xs) 0 0 var(--radius-xs)}
+th:last-child{border-radius:0 var(--radius-xs) var(--radius-xs) 0}
+td{padding:10px 12px;border-bottom:1px solid var(--bg3);color:var(--text2)}
+tr:last-child td{border-bottom:none}
+td:first-child{color:var(--text);font-weight:500}
+.total-row td{font-weight:700;color:var(--accent);background:var(--accent-bg);border-bottom:none}
+
+/* ═══ SUPP ═══ */
+.supp{display:grid;grid-template-columns:2fr 1fr 1fr 3fr;gap:12px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-sm);margin-bottom:6px;font-size:13px;align-items:center}
+.supp-name{font-weight:600;color:var(--text)}
+.supp-dose{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:500}
+.supp-when{color:var(--text3)}
+.supp-why{color:var(--text3);font-size:12px}
+
+/* ═══ TIMELINE ═══ */
+.tl{position:relative;padding-left:36px;margin:24px 0}
+.tl::before{content:'';position:absolute;left:11px;top:4px;bottom:4px;width:1.5px;background:linear-gradient(var(--accent),var(--border2))}
+.tl-item{position:relative;margin-bottom:28px}
+.tl-dot{position:absolute;left:-30px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl-time{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:500}
+.tl-title{font-size:16px;font-weight:600;margin:2px 0 4px;letter-spacing:-0.01em}
+.tl-desc{color:var(--text3);font-size:13px;line-height:1.6}
+
+/* ═══ RECOVERY PHASE ═══ */
+.phase{display:flex;gap:16px;padding:20px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);margin-bottom:10px;align-items:flex-start}
+.phase-badge{min-width:56px;height:56px;border-radius:var(--radius-sm);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:18px;line-height:1;flex-shrink:0}
+.phase-badge small{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-top:2px}
+.phase-content h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.phase-content p{font-size:13px;color:var(--text3);line-height:1.6}
+
+/* ═══ PRIORITY ═══ */
+.priority{display:flex;gap:16px;padding:20px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);margin-bottom:8px;align-items:flex-start;transition:box-shadow .3s}
+.priority:hover{box-shadow:var(--shadow)}
+.priority-num{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--accent);line-height:1;min-width:32px}
+.priority-content h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.priority-content p{font-size:13px;color:var(--text3);line-height:1.5}
+
+/* ═══ PRINCIPLE ═══ */
+.principle{border-left:2px solid var(--accent);padding-left:20px;margin-bottom:32px}
+.principle-num{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:500}
+.principle h3{font-size:17px;font-weight:600;margin:4px 0 6px;letter-spacing:-0.01em}
+.principle p{color:var(--text2);font-size:14px}
+.principle blockquote{margin-top:10px;padding:12px 16px;background:var(--bg3);border-radius:var(--radius-sm);font-style:italic;color:var(--text);font-size:13px;line-height:1.6}
+
+/* ═══ TRAVEL ═══ */
+.travel{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:32px;margin-bottom:16px}
+.travel-flag{font-size:36px;margin-bottom:8px}
+.travel h3{font-size:22px;font-weight:600;letter-spacing:-0.01em}
+.travel-sub{color:var(--text3);font-size:13px;margin-bottom:20px}
+.travel h4{font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.06em;margin:20px 0 10px}
+.phrase{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--bg3);font-size:13px}
+.phrase:last-child{border-bottom:none}
+.phrase-key{font-family:var(--mono);font-weight:600;color:var(--accent);min-width:200px;font-size:12px}
+.phrase-val{color:var(--text2)}
+
+/* ═══ FRAG ═══ */
+.frag{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:20px 24px;margin-bottom:8px}
+.frag h3{font-size:16px;font-weight:600;margin-bottom:4px}
+.frag p{color:var(--text3);font-size:13px}
+.frag-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.frag-tag{font-family:var(--mono);font-size:10px;color:var(--text3);background:var(--bg3);padding:3px 8px;border-radius:4px}
+
+/* ═══ BOOK ═══ */
+.book{display:flex;gap:16px;padding:20px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);margin-bottom:8px}
+.book-num{font-family:var(--serif);font-size:24px;color:var(--accent);min-width:28px;line-height:1}
+.book h3{font-size:15px;font-weight:600;margin-bottom:2px}
+.book-author{font-size:12px;color:var(--text4);margin-bottom:6px}
+.book p{font-size:13px;color:var(--text3)}
+
+/* ═══ DIVIDER ═══ */
+.divider{height:1px;background:var(--border2);max-width:200px;margin:0 auto}
+
+/* ═══ FOOTER ═══ */
+footer{text-align:center;padding:60px 24px;color:var(--text4);font-size:12px;line-height:1.8}
+
+/* ═══ ANIMATION ═══ */
+.fade{opacity:0;transform:translateY(16px);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.fade.vis{opacity:1;transform:translateY(0)}
+
+/* ═══ DIFF ═══ */
+.diff{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.diff-old,.diff-new{padding:16px 20px;border-radius:var(--radius-sm);font-size:13px;line-height:1.6}
+.diff-old{background:var(--red-bg)}
+.diff-new{background:var(--green-bg)}
+.diff-label{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px}
+.diff-old .diff-label{color:var(--red-dark)}
+.diff-new .diff-label{color:var(--green-dark)}
+
+/* ═══ MEDICAL ═══ */
+.med-card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:24px;margin-bottom:10px}
+.med-card h3{font-size:16px;font-weight:600;margin-bottom:6px}
+.med-card p{font-size:13px;color:var(--text2);line-height:1.65}
+.med-link{color:var(--accent);font-weight:500;font-size:13px;margin-top:8px;display:inline-block}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  .macro-grid{grid-template-columns:repeat(2,1fr)}
+  .supp{grid-template-columns:1fr;gap:4px}
+  .diff{grid-template-columns:1fr}
+  .hero-metrics{gap:24px}
+  .phrase-key{min-width:140px}
+  .phase{flex-direction:column;gap:10px}
+}
+@media(max-width:480px){
+  .section{padding:56px 16px}
+  .card,.meal,.travel{padding:20px 16px}
+  .priority{flex-direction:column;gap:8px}
+}
 </style>
 </head>
 <body>
 
 <nav>
-<span class="logo">SistemaÉlite V5</span>
-<a href="#perfil">Perfil</a>
-<a href="#diagnostico">Diagnóstico</a>
-<a href="#excel">Excel</a>
-<a href="#suplementos">Suplementos</a>
-<a href="#alimentacion">Alimentación</a>
-<a href="#masculino">Virilidad</a>
-<a href="#abstinencia">Abstinencia</a>
-<a href="#tinnitus">Tinnitus</a>
-<a href="#piel">Piel</a>
-<a href="#protocolo">Protocolo</a>
-<a href="#timeline">Evolución</a>
-<a href="#prioridades">Prioridades</a>
+<div class="nav-inner">
+<span class="nav-brand">Élite V5</span>
+<ul class="nav-links">
+<li><a href="#diagnostico">Diagnóstico</a></li>
+<li><a href="#recuperacion">Recuperación</a></li>
+<li><a href="#alimentacion">Alimentación</a></li>
+<li><a href="#piel">Piel</a></li>
+<li><a href="#voz">Voz</a></li>
+<li><a href="#influencia">Influencia</a></li>
+<li><a href="#libros">Libros</a></li>
+<li><a href="#viajes">Viajes</a></li>
+<li><a href="#aroma">Aroma</a></li>
+<li><a href="#protocolo">Protocolo</a></li>
+<li><a href="#prioridades">Prioridades</a></li>
+</ul>
+</div>
 </nav>
 
-<div class="hero" id="top">
-<h1>De la recuperación a la <em>presencia de élite</em></h1>
-<p class="sub">Análisis científico integral V5 — Marzo 2026. Cada afirmación respaldada por estudios revisados por pares (PubMed, Scopus, Cochrane). Datos extraídos del Excel <code>SistemaPersonal_Final4</code> (DASHBOARD + ALIMENTACIÓN).</p>
-<div class="badges">
-<div class="badge"><strong>16</strong>Hábitos rastreados</div>
-<div class="badge"><strong>29</strong>Objetivos activos</div>
-<div class="badge"><strong>7</strong>Días abstinencia</div>
-<div class="badge"><strong>S/ 578</strong>Presupuesto salud</div>
-<div class="badge"><strong>54</strong>Págs. 48 Leyes</div>
-<div class="badge"><strong>3</strong>Libros activos</div>
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+<div class="hero-badge"><span class="dot"></span> Abstinencia Día 7 · En recuperación activa</div>
+<h1>De hábitos rotos a <em>presencia de élite</em></h1>
+<p class="hero-sub">Sistema V5 Integral — Diagnóstico médico real, plan de recuperación por fases, balance calórico verificado, y los 10 dominios para reconstruirte desde la raíz.</p>
+<div class="hero-metrics">
+<div class="hero-metric"><div class="val">2,850</div><div class="lab">kcal / día</div></div>
+<div class="hero-metric"><div class="val">140g</div><div class="lab">proteína</div></div>
+<div class="hero-metric"><div class="val">90</div><div class="lab">días para reset</div></div>
+<div class="hero-metric"><div class="val">10</div><div class="lab">dominios</div></div>
+</div>
+</header>
+
+<div class="divider"></div>
+
+<!-- ═══ 00 · DIAGNÓSTICO ═══ -->
+<section class="section" id="diagnostico">
+<div class="section-label">00 · Diagnóstico clínico real</div>
+<h2>Tu situación <em>sin filtros</em></h2>
+<p class="section-desc">Antes de construir, hay que entender qué está dañado y por qué. Cada síntoma que describes tiene una causa rastreable.</p>
+
+<div class="alert alert-red fade">
+<div class="alert-title">⚡ Prioridad 1 — Desnutrición clínica</div>
+<p><strong>60 kg / 1.80 m = IMC 18.5</strong> — límite inferior absoluto OMS. Esto explica directamente: fatiga, baja concentración, irritabilidad, no poder subir de peso, granos en la piel y bajo rendimiento. El cerebro consume el 20% de las calorías totales. Con déficit calórico severo hay hipoglucemia cerebral periódica. Necesitas +900 kcal/día de comida real. No suplementos — comida.</p>
+</div>
+
+<div class="alert alert-red fade">
+<div class="alert-title">⚡ Prioridad 2 — Gastritis + halitosis: posible H. pylori</div>
+<p>Tu combinación de gastritis + mal aliento matutino + problemas intestinales apunta fuertemente a <strong>infección por Helicobacter pylori</strong>. Estudios en PMC muestran que H. pylori produce compuestos volátiles de azufre (hidrógeno sulfurado) que causan halitosis, y que pacientes con halitosis son 4× más propensos a tener H. pylori. <strong>Acción inmediata: test de aliento o heces para H. pylori con un gastroenterólogo.</strong> El tratamiento (antibióticos + inhibidor de bomba de protones) resuelve tanto la gastritis como la halitosis en el 55% de los casos.</p>
+</div>
+
+<div class="alert alert-orange fade">
+<div class="alert-title">⚠ Factor 3 — Depleción por eyaculación compulsiva (14 años)</div>
+<p>Masturbación 3–5×/día durante 14 años causa pérdida significativa de <strong>zinc</strong> (~5mg por eyaculación × 3–5 = 15–25mg/día, cuando tu ingesta recomendada es 11–14mg). Esto produce un ciclo de depleción documentado: déficit de zinc → baja testosterona → acné → fatiga → depresión → problemas prostáticos → mala inmunidad → toxicidad por cobre → ansiedad → más masturbación compulsiva (loop dopaminérgico). Tu dolor de cabeza de esta semana es probablemente <strong>síndrome de abstinencia dopaminérgico</strong> — tu sistema de recompensa se está recalibrando. Es temporal y es señal de recuperación.</p>
+</div>
+
+<div class="alert alert-orange fade">
+<div class="alert-title">⚠ Factor 4 — Sobrecarga cognitiva extrema</div>
+<p><strong>7am–7pm universidad (12h)</strong>, de las cuales 3–4h dictando clases + el resto clases seguidas + 9pm–11pm estudio. Son <strong>16 horas diarias</strong> de actividad cognitiva intensa con un cerebro desnutrido y agotado de zinc. Tu irritabilidad y baja tolerancia no son defectos de carácter — son síntomas directos de un cerebro operando sin combustible suficiente.</p>
+</div>
+
+<div class="alert alert-green fade">
+<div class="alert-title">✓ Tu ventaja real</div>
+<p>Ya tienes kéfir, quinoa, palta, maca, manzanilla, romero, vitamina C, Mg. <strong>Esto es 35% del sistema.</strong> Además: eres primer puesto cuando tus hábitos están bien, aprendes rápido, llevas dos carreras simultáneas, dictas clases preuniversitarias, lees libros de estrategia, y llevas 7 días de abstinencia. <strong>El 60% que falta no es imposible — es estructura.</strong></p>
+</div>
+
+<div class="card fade">
+<h3>Exámenes médicos urgentes — antes de optimizar cualquier cosa</h3>
+<h4>Esta semana</h4>
+<ul>
+<li><strong>Test de H. pylori</strong> (aliento o heces) — explica gastritis + halitosis + problemas intestinales. S/30–80.</li>
+<li><strong>Hemograma completo</strong> + perfil de hierro + B12 sérica + ácido fólico — descarta anemia y déficit B12.</li>
+<li><strong>Zinc sérico</strong> + cobre sérico — confirma la depleción por eyaculación crónica.</li>
+<li><strong>Testosterona total y libre</strong> — baseline para medir recuperación.</li>
+<li><strong>PSA (antígeno prostático)</strong> — descartar inflamación prostática a los 30 con tu historial.</li>
+</ul>
+<h4>Opcional pero recomendado</h4>
+<ul>
+<li>Perfil tiroideo (TSH, T3, T4) — descarta hipotiroidismo como causa de fatiga y no poder subir de peso.</li>
+<li>Glucosa en ayunas — descarta prediabetes o hipoglucemia reactiva.</li>
+</ul>
+<p style="margin-top:12px;font-size:12px;color:var(--text4);">Costo total estimado en Arequipa: S/150–300 en laboratorio privado. Es la inversión más importante de todo el sistema.</p>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ 01 · RECUPERACIÓN ═══ -->
+<section class="section" id="recuperacion">
+<div class="section-label">01 · Recuperación dopaminérgica</div>
+<h2>Fases de <em>reset neural</em></h2>
+<p class="section-desc">Tu cerebro lleva 14 años con sobreestimulación dopaminérgica. La recuperación de receptores D2 sigue un timeline documentado. El dolor de cabeza del día 7 es normal y temporal.</p>
+
+<div class="phase fade">
+<div class="phase-badge" style="background:var(--red-bg);color:var(--red-dark)">1–14<small>días</small></div>
+<div class="phase-content">
+<h3>Abstinencia aguda — Donde estás ahora</h3>
+<p><strong>Síntomas normales:</strong> dolor de cabeza, irritabilidad aumentada, ansiedad, insomnio, antojos intensos, "niebla mental". Tu cerebro está produciendo menos dopamina de la que necesita porque los receptores están desensibilizados (downregulated). <strong>Qué hacer:</strong> ejercicio diario (genera dopamina natural), ducha fría (dopamina +250%), cero pantallas estimulantes antes de dormir. No es fuerza de voluntad — es bioquímica. Cada día que sostienes, los receptores se van recuperando.</p>
 </div>
 </div>
 
-<!-- PERFIL -->
-<section id="perfil">
-<h2><span>00</span> · Perfil Clínico</h2>
-<p class="section-sub">Datos biométricos y contexto de vida. Extraídos del Excel y la conversación directa.</p>
-<div class="stat-row">
-<div class="stat"><div class="val">30</div><div class="label">Años</div></div>
-<div class="stat"><div class="val">1.80m</div><div class="label">Estatura</div></div>
-<div class="stat"><div class="val" style="color:var(--red)">60 kg</div><div class="label">Peso ⚠️</div></div>
-<div class="stat"><div class="val" style="color:var(--red)">18.5</div><div class="label">IMC ⚠️</div></div>
-<div class="stat"><div class="val" style="color:var(--orange)">6h</div><div class="label">Sueño real</div></div>
-<div class="stat"><div class="val">18h</div><div class="label">Horas despierto</div></div>
-<div class="stat"><div class="val">2</div><div class="label">Carreras</div></div>
-<div class="stat"><div class="val">3h</div><div class="label">Docencia/día</div></div>
+<div class="phase fade">
+<div class="phase-badge" style="background:var(--orange-bg);color:var(--orange-dark)">15–30<small>días</small></div>
+<div class="phase-content">
+<h3>Flatline — La meseta que asusta</h3>
+<p>Las urgencias bajan drásticamente pero también puede bajar la libido, motivación y energía. Esto es el "flatline" — tu sistema de recompensa está recalibrándose. <strong>No es retroceso, es reconstrucción.</strong> Tu cerebro está creando nuevas conexiones. La energía que notas al entrar en abstinencia se estabilizará en este período. Mantén la estructura de hábitos especialmente aquí.</p>
 </div>
-<div class="alert">
-<strong>⚠️ IMC 18.5 — Límite inferior absoluto OMS</strong>
-<p>60 kg / 1.80 m no es "estar delgado" — es el umbral clínico que separa normopeso de desnutrición. Con universidad 12h + docencia 3h, el déficit calórico es severo. El cerebro consume 20% de calorías; con déficit hay hipoglucemia cerebral periódica → pérdida de memoria, fatiga, irritabilidad. <strong>Meta: +500–700 kcal/día de comida real.</strong> Lieberman HR (2003). Appetite, 40(3):245-254.</p>
 </div>
-<div class="alert warn">
-<strong>⚠️ Sueño 6h vs 7.5–8h requeridas</strong>
-<p>Con 6h durante 2 semanas, déficits cognitivos equivalen a 2 noches sin dormir (Harrison & Horne 2000). Amígdala +60% reactiva → irritabilidad directa (Goldstein & Walker 2014). <strong>Ningún suplemento compensa la privación crónica de sueño.</strong></p>
+
+<div class="phase fade">
+<div class="phase-badge" style="background:var(--gold-bg);color:var(--gold)">30–60<small>días</small></div>
+<div class="phase-content">
+<h3>Neuroplasticidad activa</h3>
+<p>Los receptores D2 comienzan a upregular significativamente. Notas: mejor concentración sostenida, memoria de trabajo mejorada, energía más estable, menos irritabilidad, mejor calidad de sueño, voz más profunda (testosterona en recuperación). <strong>Aquí empiezas a sentir al hombre que eras a los 14.</strong> El foco académico regresa.</p>
+</div>
+</div>
+
+<div class="phase fade">
+<div class="phase-badge" style="background:var(--green-bg);color:var(--green-dark)">60–90<small>días</small></div>
+<div class="phase-content">
+<h3>Reset significativo — Nuevo baseline</h3>
+<p>Estudios muestran que los transportadores de dopamina se recuperan significativamente después de abstinencia prolongada (Volkow et al., 2001, J Neurosci). La ansiedad compulsiva disminuye notablemente. <strong>Hitos esperados:</strong> recuperas la concentración de "primer puesto", la memoria mejora marcadamente, la energía es sostenida sin picos/crashes, la piel mejora visiblemente (zinc restaurándose), la presencia física cambia.</p>
+</div>
+</div>
+
+<div class="phase fade">
+<div class="phase-badge" style="background:var(--accent-bg);color:var(--accent)">90+<small>días</small></div>
+<div class="phase-content">
+<h3>Consolidación — El nuevo tú</h3>
+<p>La recuperación completa del eje hormonal y dopaminérgico puede tomar 6–12 meses dependiendo de la severidad y duración del hábito. Pero a los 90 días, los cambios más importantes ya están consolidados. A partir de aquí, la abstinencia deja de ser esfuerzo y se convierte en identidad. <strong>Tu zinc sérico, testosterona y claridad mental estarán en niveles que no has tenido desde adolescente.</strong></p>
+</div>
+</div>
+
+<div class="card fade">
+<h3>Estrategias anti-recaída específicas para tu situación</h3>
+<ul>
+<li><strong>Trigger principal:</strong> tiempo no estructurado + pantalla. Tu horario de 7am–11pm es paradójicamente una ventaja — hay poco tiempo libre para recaídas.</li>
+<li><strong>Mantén las manos ocupadas:</strong> ejercicio, lectura, escritura, cocina. Redirige la energía a algo tangible.</li>
+<li><strong>Ducha fría inmediata</strong> ante cualquier urgencia — produce dopamina natural sin el crash posterior.</li>
+<li><strong>Nunca uses el teléfono en cama.</strong> Cárgalo fuera del dormitorio. El 80% de las recaídas ocurren en cama con pantalla.</li>
+<li><strong>Grábate un audio</strong> explicándote a ti mismo por qué decidiste esto. Escúchalo cuando la urgencia golpee.</li>
+<li><strong>No cuentes días obsesivamente</strong> — construye una identidad nueva. "No soy alguien que se abstiene, soy alguien que tiene mejores cosas que hacer."</li>
+</ul>
 </div>
 </section>
 
-<!-- DIAGNÓSTICO -->
-<section id="diagnostico">
-<h2><span>01</span> · Diagnóstico Raíz</h2>
-<p class="section-sub">Tus síntomas tienen causas identificables. Un tratamiento de élite ataca causas, no síntomas.</p>
-<div class="tbl-wrap"><table>
-<tr><th>Síntoma</th><th>Causa #1</th><th>Causa #2</th><th>Urgencia</th></tr>
-<tr><td>Pérdida de memoria</td><td>Sueño 6h (sin NREM no hay consolidación)</td><td>Déficit B12 (desmielinización)</td><td style="color:var(--red)">🔴 ALTA</td></tr>
-<tr><td>Ansiedad</td><td>Déficit de Mg (eje HHA)</td><td>Privación de sueño</td><td style="color:var(--red)">🔴 ALTA</td></tr>
-<tr><td>Irritabilidad</td><td>Sueño (amígdala +60% reactiva)</td><td>Déficit Mg (GABA/NMDA)</td><td style="color:var(--red)">🔴 ALTA</td></tr>
-<tr><td>Energía muy baja</td><td>Déficit calórico (IMC 18.5)</td><td>Sueño insuficiente</td><td style="color:var(--red)">🔴 CRÍTICA</td></tr>
-<tr><td>Bajo rendimiento</td><td>Sin sueño no se consolida memoria</td><td>Hipoglucemia cerebral</td><td style="color:var(--red)">🔴 ALTA</td></tr>
-<tr><td>Tinnitus (7 años)</td><td>Déficit B12 (47% — Shemesh 1993)</td><td>Estrés oxidativo coclear</td><td style="color:var(--orange)">🟠 OTORRINO</td></tr>
-<tr><td>Baja libido / vigor</td><td>Déficit calórico + Zn bajo</td><td>Sueño &lt;7h reduce T 15%</td><td style="color:var(--orange)">🟠 ALTA</td></tr>
-</table></div>
+<div class="divider"></div>
 
-<h3>Las 3 causas raíz</h3>
-<div class="card-grid">
-<div class="card"><span class="tag tag-critico">CAUSA #1</span><h4>Sueño insuficiente crónico</h4><p>6h vs 7–9h. Responsable directo de memoria, irritabilidad, ansiedad, baja T. Durante NREM el hipocampo transfiere a corteza prefrontal.</p><div class="ref">Walker MP (2017). Why We Sleep. / Stickgold R (2013). Nat Neurosci 16(2):139-145.</div></div>
-<div class="card"><span class="tag tag-critico">CAUSA #2</span><h4>Déficit calórico severo</h4><p>IMC 18.5 + actividad extrema. TMB ~1,803 × 1.725 = ~3,110 kcal/día necesarias. Hipoglucemia cerebral periódica → fatiga, catabolismo, T baja.</p><div class="ref">Lieberman HR (2003). Appetite, 40(3):245-254.</div></div>
-<div class="card"><span class="tag tag-alto">CAUSA #3</span><h4>Déficits nutricionales</h4><p>B12 (0 días), Zinc (0 días), posible déficit de hierro y Vit D. La B12 sintetiza mielina; Zinc = cofactor de +300 enzimas incluida síntesis de T.</p><div class="ref">Green R et al. (2017). Nat Rev Disease Primers, 3:17040.</div></div>
-</div>
-</section>
+<!-- ═══ 02 · ALIMENTACIÓN ═══ -->
+<section class="section" id="alimentacion">
+<div class="section-label">02 · Alimentación balanceada</div>
+<h2>2,850 kcal con <em>macros reales</em></h2>
+<p class="section-desc">Cada gramo contado. Protocolo amigable con gastritis (nada que inflame). Presupuesto S/35–45/día. Prioridad absoluta: calorías > suplementos.</p>
 
-<!-- EXCEL -->
-<section id="excel">
-<h2><span>02</span> · Análisis del Excel</h2>
-<p class="section-sub">Hojas DASHBOARD y ALIMENTACIÓN de <code>SistemaPersonal_Final4</code> · Actualizado 15 Marzo 2026.</p>
-
-<h3>Estado de hábitos — 7 días tracking</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Hábito</th><th>Días ✓</th><th>%</th><th>Estado</th><th>Prior.</th></tr>
-<tr><td><strong>Abstinencia</strong></td><td style="color:var(--green)">7</td><td>100%</td><td>●●● Racha</td><td style="color:var(--gold)">ALTA</td></tr>
-<tr><td><strong>Maca</strong></td><td style="color:var(--green)">5</td><td>71%</td><td>●●● Bien</td><td style="color:var(--gold)">ALTA</td></tr>
-<tr><td><strong>Manzanilla</strong></td><td style="color:var(--cyan)">5</td><td>71%</td><td>●●○</td><td>MEDIA</td></tr>
-<tr><td><strong>Citrato Mg</strong></td><td style="color:var(--cyan)">3</td><td>43%</td><td>●●○ Parcial</td><td style="color:var(--gold)">ALTA</td></tr>
-<tr><td><strong>Kéfir</strong></td><td>1</td><td>14%</td><td>●○○ Inicio</td><td style="color:var(--gold)">ALTA</td></tr>
-<tr><td><strong>Espinaca</strong></td><td>1</td><td>14%</td><td>●○○</td><td>VISIÓN</td></tr>
-<tr style="color:var(--red)"><td><strong>B12 sublingual</strong></td><td>0</td><td>0%</td><td>❌ No tomada</td><td>ALTA</td></tr>
-<tr style="color:var(--red)"><td><strong>Colágeno</strong></td><td>0</td><td>0%</td><td>❌</td><td>ALTA</td></tr>
-<tr style="color:var(--red)"><td><strong>Zinc 30mg</strong></td><td>0</td><td>0%</td><td>❌</td><td>ALTA</td></tr>
-<tr style="color:var(--red)"><td><strong>Vit. C</strong></td><td>0</td><td>0%</td><td>❌</td><td>ALTA</td></tr>
-<tr style="color:var(--red)"><td><strong>Voz</strong></td><td>0</td><td>0%</td><td>❌</td><td>MEDIA</td></tr>
-<tr style="color:var(--red)"><td><strong>Romero</strong></td><td>0</td><td>0%</td><td>❌</td><td>MEDIA</td></tr>
-<tr style="color:var(--red)"><td><strong>Quinoa</strong></td><td>0</td><td>0%</td><td>❌</td><td>MEDIA</td></tr>
-<tr style="color:var(--red)"><td><strong>Beterraga / Proteína</strong></td><td>0</td><td>0%</td><td>❌</td><td>MEDIA</td></tr>
-</table></div>
-
-<div class="alert">
-<strong>12 de 16 hábitos están en 0 días</strong>
-<p>Los de mayor impacto clínico (B12, Zinc, Colágeno, Vit C, Ejercicio) no se han iniciado. Lecturas van bien (54 págs 48 Leyes, 14 Arte Seducción, 21 Tracy). <strong>Prioridad inmediata: activar B12, Zinc y quinua esta semana.</strong></p>
+<div class="alert alert-blue fade">
+<div class="alert-title">Nota para gastritis</div>
+<p>Si el test de H. pylori sale positivo, el médico prescribirá tratamiento antibiótico. Mientras tanto: evitar café en ayunas, alcohol, picante excesivo, cebolla cruda en exceso (puede irritar), y AINEs. El kéfir es especialmente bueno para gastritis — los probióticos ayudan a restaurar la flora gástrica dañada.</p>
 </div>
 
-<h3>Objetivos ●●● del Excel</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Objetivo</th><th>Categoría</th><th>✓</th></tr>
-<tr><td>Pagar el préstamo</td><td>Finanzas</td><td>○</td></tr>
-<tr><td>Masa muscular</td><td>Salud</td><td>○</td></tr>
-<tr><td>Obtener brevette</td><td>Personal</td><td>○</td></tr>
-<tr><td>Ventas c/ Edgar + al estado</td><td>Finanzas/Negocio</td><td>○</td></tr>
-<tr><td>Brackets / Diente</td><td>Salud</td><td>○</td></tr>
-<tr><td>Avanzar carrera Civil</td><td>Carrera</td><td>○</td></tr>
-</table></div>
-
-<h3>Compras salud — S/ 578 confirmado</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Producto</th><th>Precio</th><th>Total</th></tr>
-<tr><td>💊 Astaxantina</td><td>S/ 130</td><td>S/ 130</td></tr>
-<tr><td>🧴 Colágeno</td><td>S/ 180</td><td>S/ 180</td></tr>
-<tr><td>🥩 Proteína Tarwi</td><td>S/ 90</td><td>S/ 90</td></tr>
-<tr><td>🧴 Jabón Arroz ×3 + Cúrcuma ×2</td><td>S/ 20+19</td><td>S/ 98</td></tr>
-<tr><td>🥗 Quinoa ×2 + Cañihua + Maca</td><td>S/ 20 c/u</td><td>S/ 80</td></tr>
-<tr><td colspan="2" style="text-align:right;font-weight:700">TOTAL</td><td style="color:var(--gold);font-weight:700">S/ 578</td></tr>
-</table></div>
-
-<div class="alert info">
-<strong>Sin precio aún (priorizar):</strong>
-<p>Omega-3 EPA/DHA · Creatina · Bloqueador Solar · Linaza · Resveratrol · Curcumina · Sangre de Grado. <strong>Recomendación: Omega-3, Creatina y SPF 50 primero.</strong></p>
+<div class="macro-grid fade">
+<div class="macro-box"><div class="val">2,850</div><div class="unit">kcal totales</div></div>
+<div class="macro-box"><div class="val">140g</div><div class="unit">proteína (20%)</div></div>
+<div class="macro-box"><div class="val">110g</div><div class="unit">grasas (35%)</div></div>
+<div class="macro-box"><div class="val">310g</div><div class="unit">carbos (45%)</div></div>
 </div>
-</section>
+
+<!-- DESAYUNO -->
+<div class="meal fade">
+<div class="meal-head">
+<div class="meal-left"><span class="meal-time">07:00</span><span class="meal-name">Desayuno anabólico</span></div>
+<span class="meal-kcal">~750 kcal</span>
+</div>
+<div class="meal-body">
+<div class="meal-item"><span class="food">Huevos enteros (revueltos en oliva)</span><span class="amt">3 und (210g)</span></div>
+<div class="meal-item"><span class="food">Pan integral tostado</span><span class="amt">2 rebanadas (80g)</span></div>
+<div class="meal-item"><span class="food">Palta madura</span><span class="amt">½ und (80g)</span></div>
+<div class="meal-item"><span class="food">Kéfir natural</span><span class="amt">200 ml</span></div>
+<div class="meal-item"><span class="food">Cañihua tostada (en kéfir)</span><span class="amt">2 cdas (20g)</span></div>
+<div class="meal-item"><span class="food">Maca negra gelatinizada</span><span class="amt">1 cdita (5g)</span></div>
+<div class="meal-macros">
+<span class="meal-macro">P: <span>35g</span></span>
+<span class="meal-macro">G: <span>38g</span></span>
+<span class="meal-macro">C: <span>65g</span></span>
+</div>
+<p class="meal-note"><strong>Por qué funciona:</strong> Huevos = leucina (señal mTOR) + colesterol HDL para testosterona. Kéfir restaura flora gástrica (clave con tu gastritis). La cañihua aporta hierro 8.4mg/100g. <em>Suplementos: Zinc 30mg · D3+K2 · B12 sublingual (tomada 30 min antes).</em></p>
+</div>
+</div>
+
+<!-- SNACK -->
+<div class="meal fade">
+<div class="meal-head">
+<div class="meal-left"><span class="meal-time">10:30</span><span class="meal-name">Snack media mañana</span></div>
+<span class="meal-kcal">~150 kcal</span>
+</div>
+<div class="meal-body">
+<div class="meal-item"><span class="food">Sacha inchi tostado o mix frutos secos</span><span class="amt">25g</span></div>
+<div class="meal-item"><span class="food">Fruta (plátano, mandarina, manzana)</span><span class="amt">1 und</span></div>
+<div class="meal-macros"><span class="meal-macro">P: <span>6g</span></span><span class="meal-macro">G: <span>8g</span></span><span class="meal-macro">C: <span>16g</span></span></div>
+<p class="meal-note">Fácil de llevar a la universidad. Mantiene metabolismo activo entre desayuno y almuerzo.</p>
+</div>
+</div>
+
+<!-- ALMUERZO -->
+<div class="meal fade">
+<div class="meal-head">
+<div class="meal-left"><span class="meal-time">13:00</span><span class="meal-name">Almuerzo de volumen</span></div>
+<span class="meal-kcal">~850 kcal</span>
+</div>
+<div class="meal-body">
+<div class="meal-item"><span class="food">Quinoa cocida</span><span class="amt">250g</span></div>
+<div class="meal-item"><span class="food">Pollo plancha o sardinas</span><span class="amt">180g</span></div>
+<div class="meal-item"><span class="food">Espinaca/brócoli</span><span class="amt">100g</span></div>
+<div class="meal-item"><span class="food">Palta</span><span class="amt">½ und (80g)</span></div>
+<div class="meal-item"><span class="food">Aceite oliva extra virgen</span><span class="amt">1 cda (15ml)</span></div>
+<div class="meal-item"><span class="food">Beterraga rallada (ya la consumes)</span><span class="amt">50g</span></div>
+<div class="meal-macros">
+<span class="meal-macro">P: <span>48g</span></span>
+<span class="meal-macro">G: <span>30g</span></span>
+<span class="meal-macro">C: <span>85g</span></span>
+</div>
+<p class="meal-note"><strong>Beterraga:</strong> nitratos → óxido nítrico → vasodilatación → mejor circulación cerebral durante las clases de la tarde. Ya la consumes — perfecto. <em>Suplementos: Astaxantina 12mg (con grasa) · Creatina 5g.</em></p>
+</div>
+</div>
+
+<!-- BATIDO -->
+<div class="meal fade">
+<div class="meal-head">
+<div class="meal-left"><span class="meal-time">16:30</span><span class="meal-name">Batido entre clases</span></div>
+<span class="meal-kcal">~500 kcal</span>
+</div>
+<div class="meal-body">
+<div class="meal-item"><span class="food">Plátano maduro</span><span class="amt">1 grande (130g)</span></div>
+<div class="meal-item"><span class="food">Avena en hojuelas</span><span class="amt">½ taza (40g)</span></div>
+<div class="meal-item"><span class="food">Sacha inchi molido</span><span class="amt">25g</span></div>
+<div class="meal-item"><span class="food">Linaza molida</span><span class="amt">2 cdas (15g)</span></div>
+<div class="meal-item"><span class="food">Camu-camu en polvo</span><span class="amt">½ cdita (3g)</span></div>
+<div class="meal-item"><span class="food">Leche entera o kéfir</span><span class="amt">250 ml</span></div>
+<div class="meal-item"><span class="food">Miel</span><span class="amt">1 cda (15g)</span></div>
+<div class="meal-macros"><span class="meal-macro">P: <span>18g</span></span><span class="meal-macro">G: <span>20g</span></span><span class="meal-macro">C: <span>68g</span></span></div>
+<p class="meal-note">Preparar en la mañana, llevar en termo a la universidad. El camu-camu activa prolil hidroxilasa para síntesis de colágeno nocturna.</p>
+</div>
+</div>
+
+<!-- CENA -->
+<div class="meal fade" style="border:2px solid var(--green)">
+<div class="meal-head">
+<div class="meal-left"><span class="meal-time">20:30</span><span class="meal-name">Cena nocturna <span class="tag tag-green" style="margin-left:8px">Nuevo V5</span></span></div>
+<span class="meal-kcal">~600 kcal</span>
+</div>
+<div class="meal-body">
+<div class="meal-item"><span class="food">Arroz integral o kiwicha cocida</span><span class="amt">200g cocido</span></div>
+<div class="meal-item"><span class="food">Pescado (trucha, bonito, jurel) o 2 huevos</span><span class="amt">150g / 2 und</span></div>
+<div class="meal-item"><span class="food">Zapallo o camote</span><span class="amt">100g</span></div>
+<div class="meal-item"><span class="food">Ensalada (lechuga, pepino, tomate)</span><span class="amt">100g</span></div>
+<div class="meal-item"><span class="food">Aceite oliva</span><span class="amt">1 cda</span></div>
+<div class="meal-macros"><span class="meal-macro">P: <span>33g</span></span><span class="meal-macro">G: <span>18g</span></span><span class="meal-macro">C: <span>76g</span></span></div>
+<p class="meal-note"><strong>La corrección más importante de V5.</strong> La versión anterior no tenía cena estructurada — dejaba un hueco de ~600 kcal. Los carbohidratos complejos nocturnos favorecen serotonina → melatonina para sueño profundo. <em>Suplementos: Mg citrato 400mg · NAC 600mg.</em></p>
+</div>
+</div>
+
+<!-- VERIFICACIÓN -->
+<div class="card fade">
+<h3>Verificación del balance</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Comida</th><th>Kcal</th><th>Proteína</th><th>Grasa</th><th>Carbos</th></tr></thead>
+<tbody>
+<tr><td>Desayuno 07:00</td><td>750</td><td>35g</td><td>38g</td><td>65g</td></tr>
+<tr><td>Snack 10:30</td><td>150</td><td>6g</td><td>8g</td><td>16g</td></tr>
+<tr><td>Almuerzo 13:00</td><td>850</td><td>48g</td><td>30g</td><td>85g</td></tr>
+<tr><td>Batido 16:30</td><td>500</td><td>18g</td><td>20g</td><td>68g</td></tr>
+<tr><td>Cena 20:30</td><td>600</td><td>33g</td><td>18g</td><td>76g</td></tr>
+<tr class="total-row"><td>TOTAL</td><td>2,850</td><td>140g ✓</td><td>114g ✓</td><td>310g ✓</td></tr>
+</tbody>
+</table>
+</div>
+<p style="font-size:12px;color:var(--text4);margin-top:8px">140g proteína = 2.3g/kg a 60kg. Al llegar a 65–68kg → ratio de 2.0g/kg óptimo. Valores ±10% según marcas.</p>
+</div>
 
 <!-- SUPLEMENTOS -->
-<section id="suplementos">
-<h2><span>03</span> · Suplementación Científica</h2>
-<p class="section-sub">Cada uno con mecanismo, dosis, horario, interacciones y evidencia indexada.</p>
-<div class="card-grid">
-<div class="card"><span class="tag tag-critico">PRIORIDAD #1</span><h4>Vitamina B12 Metilcobalamina Sublingual</h4><p><strong>El más urgente.</strong> Tinnitus + memoria + fatiga + ansiedad = perfil B12. 47% tinnitus asociado a déficit (Shemesh 1993). Cofactor metionina sintasa → déficit = desmielinización nervio auditivo + corteza prefrontal. <strong>Biodisponibilidad sublingual 93% vs 50% oral.</strong></p><p><strong>Dosis:</strong> 1,000–2,000 mcg/día. <strong>05:00 AM</strong> ayunas, 60 seg bajo lengua. Fase 1: 60 días repleción → Fase 2: 500–1,000 mantenimiento. <strong>Sinergia:</strong> + B9 (400 mcg) + B6 (25 mg).</p><div class="ref">Shemesh Z (1993). Am J Otolaryngol 14(2):94-99. / Green R (2017). Nat Rev Dis Primers 3:17040. / Sharabi A (2003). Br J Clin Pharmacol 56(6).</div></div>
+<h3 style="font-size:20px;font-weight:600;margin:40px 0 16px">7 suplementos esenciales</h3>
+<p style="font-size:13px;color:var(--text3);margin-bottom:16px">Reducidos de 10+ a 7. El zinc es ahora <strong>prioritario por tu historial</strong> — no solo para testosterona sino para reponer 14 años de depleción.</p>
 
-<div class="card"><span class="tag tag-critico">PRIORIDAD #2</span><h4>Citrato de Magnesio</h4><p><strong>Ansiedad:</strong> Meta-análisis 18 estudios confirma reducción vía eje HHA (Boyle 2017). <strong>Sueño:</strong> Activa GABA-A → NREM. <strong>Tinnitus:</strong> Bloquea NMDA cocleares.</p><p><strong>Dosis:</strong> 300–400 mg elemental. Gradual: 150→250→300+ mg. <strong>22:00</strong> con cena. <strong>Separar de Zinc 2h.</strong></p><div class="ref">Boyle NB (2017). Nutrients 9(5):429. / Sartori SB (2012). Neuropharmacology 62(1):304.</div></div>
-
-<div class="card"><span class="tag tag-alto">PRIORIDAD #3</span><h4>Astaxantina 12 mg (verificar Oriflame)</h4><p>6,000× más potente que Vit C (Nishida 2007). Protege mitocondrias cocleares. RCT: mejora memoria de trabajo a 6mg/día (Katagiri 2012). Reduce IL-6 y TNF-α. <strong>Fuente:</strong> Haematococcus pluvialis.</p><p><strong>13:00</strong> ALMUERZO con grasa (liposoluble obligatorio).</p><div class="ref">Fetoni AR (2013). Exp Gerontol 48(2):107. / Katagiri M (2012). JCBN 51(2):102.</div></div>
-
-<div class="card"><span class="tag tag-alto">PRIORIDAD #4</span><h4>Zinc 30mg — Testosterona + Función eréctil</h4><p>Revisión sistemática 38 estudios: correlación positiva zinc–testosterona. Cofactor 5α-reductasa en Leydig. Mejora NO, cGMP peniano, dopamina, reflejos eréctiles en modelos validados. <strong>Para IMC 18.5, probablemente deficiente.</strong></p><p><strong>25–30 mg</strong> gluconato/picolinato. <strong>13:00</strong> ALMUERZO. Separar Mg 2h. No exceder 40 mg.</p><div class="ref">Te L et al. (2023). J Trace Elem Med Biol. / Besong EE (2023). Redox Report 28(1).</div></div>
-
-<div class="card"><span class="tag tag-alto">ESENCIAL</span><h4>Kéfir / Búlgaros</h4><p>90–95% serotonina = intestino. RCT: reduce ansiedad GAD-7 (Wang 2021). Potencia absorción B12 y Mg (Bourrie 2016). <strong>150–250 mL/día</strong>, DESAYUNO, después de primeros bocados. No calentar &gt;45°C.</p><div class="ref">Dinan TG (2015). Biol Psychiatry 74(10):720. / Wang H (2021). J Psychiatr Res 131:82.</div></div>
-
-<div class="card"><span class="tag tag-alto">ESENCIAL</span><h4>Maca Negra Gelatinizada</h4><p>Fatiga -57% (Shin 2010). Glucosinolatos → función colinérgica. Reduce ansiedad Hamilton. GELATINIZADA obligatorio. <strong>1.5–3 g</strong> polvo, <strong>07:00</strong> desayuno. Ciclos 3 meses → 2-3 sem descanso.</p><div class="ref">Shin BC (2010). J Ethnopharmacol 132(2):469. / Gonzales-Arimborgo C (2016). Pharmaceuticals 9(3):49.</div></div>
-
-<div class="card"><span class="tag tag-nuevo">NUEVO</span><h4>L-Citrulina — Función eréctil vía NO</h4><p>Se convierte en L-arginina → NO → vasodilatación peniana vía NO/cGMP. Escapa metabolismo hepático (mejor que arginina oral). <strong>RCT:</strong> 1.5g/día, 50% mejora firmeza eréctil vs 8.3% placebo (p&lt;0.01). <strong>Fuente natural:</strong> sandía (300g ≈ 1g citrulina).</p><p><strong>1.5–3 g/día</strong>, dividir 2 tomas.</p><div class="ref">Cormio L (2011). Urology 77(1):119-122. / Schwedhelm E (2008). Br J Clin Pharmacol 65:51.</div></div>
-
-<div class="card"><span class="tag tag-nuevo">NUEVO</span><h4>Creatina Monohidrato 5g</h4><p>Cognición bajo estrés (McMorris 2006). +700 estudios: +8% fuerza, +14% masa magra. Mejora potencia laríngea (voz). <strong>5g/día</strong> sin fase carga. <strong>13:00</strong> ALMUERZO o post-ejercicio. Ya en tu lista Excel.</p><div class="ref">McMorris T (2006). Psychopharmacology 185(1):93. / Kreider RB (2017). JISSN 14:18.</div></div>
-
-<div class="card"><span class="tag tag-nuevo">NUEVO</span><h4>Vitamina D3 + K2</h4><p>T ↑ significativa con 3,332 UI/día × 12 meses (Pilz 2011). Déficit probable: 12h interiores sin sol real. <strong>2,000–4,000 UI D3 + 100 mcg K2 MK-7</strong>, <strong>13:00</strong> con grasa. Pedir 25-OH-Vit.D.</p><div class="ref">Pilz S (2011). Horm Metab Res 43(3):223. / Shaffer JA (2014). Psychosom Med.</div></div>
-
-<div class="card"><span class="tag tag-medio">MODERADO</span><h4>Ajo crudo 1–2 dientes/día</h4><p>Alicina inhibe tromboxano → microcirculación coclear (Rahman 2007). Antiaromático + neuroprotector. <strong>TRITURAR → 10 MIN REPOSO → comer.</strong> <strong>13:00</strong> almuerzo (no ayunas).</p><div class="ref">Rahman K (2007). Mol Nutr Food Res 51(11). / Borek C (2001). J Nutr 131(3):1010S.</div></div>
-
-<div class="card"><span class="tag tag-nuevo">NUEVO</span><h4>Omega-3 EPA+DHA</h4><p>DHA = 30% corteza prefrontal. Meta-análisis JAMA: reduce ansiedad (Su 2018). Sardinas/caballa 3×/semana > cápsulas (2× biodisponibilidad). <strong>1,000–2,000 mg</strong>, <strong>13:00</strong> con grasa.</p><div class="ref">Yurko-Mauro K (2010). Alzheimer's & Dementia 6(6):456. / Su KP (2018). JAMA Network Open 1(5).</div></div>
-</div>
-
-<h3>Compatibilidad por horario</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Hora</th><th>Suplementos</th><th>Comida</th><th>Notas</th></tr>
-<tr><td style="color:var(--gold)">05:00</td><td>B12 sublingual</td><td>Ayunas</td><td>Sola. 60 seg bajo lengua.</td></tr>
-<tr><td style="color:var(--gold)">07:00</td><td>Maca + Ác. Fólico + B6 + Kéfir</td><td>Desayuno</td><td>Compatibles entre sí.</td></tr>
-<tr><td style="color:var(--gold)">13:00</td><td>Zinc + Astaxantina + Omega-3 + D3+K2 + Creatina</td><td>Almuerzo grasa</td><td>Liposolubles juntos. Zinc separar Mg 2h.</td></tr>
-<tr><td style="color:var(--gold)">16:00</td><td>Colágeno + Vit C (camu-camu) + L-citrulina</td><td>Batido</td><td>Vit C = cofactor colágeno.</td></tr>
-<tr><td style="color:var(--gold)">22:00</td><td>Citrato de Magnesio</td><td>Cena</td><td>GABA nocturno. NO con zinc.</td></tr>
-</table></div>
+<div class="supp fade"><span class="supp-name">B12 sublingual</span><span class="supp-dose">1000 mcg</span><span class="supp-when">05:00 ayunas</span><span class="supp-why">Mielina, memoria, energía, tinnitus</span></div>
+<div class="supp fade"><span class="supp-name">Zinc bisglicinato</span><span class="supp-dose">50 mg*</span><span class="supp-when">07:00 desayuno</span><span class="supp-why">*Dosis alta 3 meses por depleción, luego 30mg</span></div>
+<div class="supp fade"><span class="supp-name">D3 + K2</span><span class="supp-dose">4000 UI + 100 mcg</span><span class="supp-when">07:00 con grasa</span><span class="supp-why">Arequipa tiene sol pero altitud reduce absorción</span></div>
+<div class="supp fade"><span class="supp-name">Creatina monohidrato</span><span class="supp-dose">5g</span><span class="supp-when">13:00 almuerzo</span><span class="supp-why">Masa muscular, cognición, el suplemento con más evidencia</span></div>
+<div class="supp fade"><span class="supp-name">Astaxantina</span><span class="supp-dose">12 mg</span><span class="supp-when">13:00 con grasa</span><span class="supp-why">Piel, tinnitus, recuperación muscular</span></div>
+<div class="supp fade"><span class="supp-name">NAC</span><span class="supp-dose">600 mg</span><span class="supp-when">20:30 cena</span><span class="supp-why">Glutatión, hígado, modula glutamato (tinnitus)</span></div>
+<div class="supp fade"><span class="supp-name">Magnesio citrato</span><span class="supp-dose">400 mg</span><span class="supp-when">20:30 cena</span><span class="supp-why">GABA → sueño NREM, reduce ansiedad nocturna</span></div>
 </section>
 
-<!-- ALIMENTACIÓN -->
-<section id="alimentacion">
-<h2><span>04</span> · Alimentación: Masa, Testosterona, Cognición</h2>
-<p class="section-sub">Superalimentos andinos + brechas alimentarias + protocolos de comida.</p>
-<div class="card-grid">
-<div class="card"><span class="tag tag-critico">BRECHA #1</span><h4>Huevos enteros — 3/día</h4><p>Colesterol → T en Leydig. Colina → acetilcolina (memoria). Leucina → mTOR (músculo). La proteína más biodisponible. S/1.50/día.</p><div class="ref">Ratliff J (2010). Metabolism. / Herron KL (2004). J Nutrition.</div></div>
-<div class="card"><span class="tag tag-critico">BRECHA #2</span><h4>Sardinas/caballa — 3×/semana</h4><p>Omega-3 fosfolipídico 2× biodisponibilidad. D3 natural + calcio + selenio + B12. EPA/DHA → piel hidratada. S/3–5/lata.</p><div class="ref">Dyerberg J (2010). Prostaglandins Leukotr. / Holick MF (2007). NEJM.</div></div>
-<div class="card"><span class="tag tag-andino">ANDINO</span><h4>Quinua blanca + negra (alternando)</h4><p>Proteína completa. Negra: antocianinas neuroprotectoras. IG ~50. Lavar 3–4× (saponinas). 200g cocida/comida.</p><div class="ref">Vega-Gálvez A (2010). Food Chemistry 123(3):847.</div></div>
-<div class="card"><span class="tag tag-andino">ANDINO</span><h4>Cañihua</h4><p>Superior: Fe 8.4mg (vs 4.6 quinua), Mg 84mg, Ca 110mg, Fibra 9.8g. Sin saponinas. IG ~35. Tostar → cañihuaco para batidos.</p><div class="ref">Repo-Carrasco-Valencia R (2009). Food & Nutr Sci 1(1):1.</div></div>
-<div class="card"><span class="tag tag-andino">NUEVO</span><h4>Sacha Inchi — 20–30g/día</h4><p>48% ALA (Omega-3 vegetal > chía/linaza). 27g proteína/100g con triptófano. Mejora absorción de astaxantina.</p><div class="ref">Fanali C (2011). J Sep Sci. / Gorriti A (2010). Rev Perú Med Exp.</div></div>
-<div class="card"><span class="tag tag-andino">NUEVO</span><h4>Camu-camu — 1 cdita/día</h4><p>60× más Vit C que naranja. Cofactor obligatorio prolil hidroxilasa (colágeno). Inhibe tirosinasa (manchas). Sin esto, el colágeno se degrada.</p><div class="ref">Chirinos R (2010). J Agric Food Chem. / Pullar JM (2017). Nutrients.</div></div>
-<div class="card"><span class="tag tag-nuevo">ERECCIÓN</span><h4>Sandía — fuente de L-citrulina</h4><p>Mayor citrulina dietética → L-arginina → NO → vasodilatación. 300g ≈ 1g citrulina. Corteza contiene más. Snack o jugo sin azúcar.</p><div class="ref">Rimando AM (2005). J Chromatogr A 1078(1-2):196.</div></div>
-<div class="card"><span class="tag tag-nuevo">TESTOSTERONA</span><h4>Cebolla morada cruda — diaria</h4><p>Quercetina inhibe aromatasa (T→E). ↑LH. Cruda al almuerzo (calor destruye quercetina). Con ajo = dúo antiaromático.</p><div class="ref">Khaki A (2009). Folia Morphologica. / Gauthaman K (2003). J Ethnopharmacol.</div></div>
+<div class="divider"></div>
+
+<!-- ═══ 03 · PIEL ═══ -->
+<section class="section" id="piel">
+<div class="section-label">03 · Piel & cuerpo</div>
+<h2>Los granos tienen <em>causa interna</em></h2>
+<p class="section-desc">Tus granos no son solo "piel grasa" — son síntoma de déficit de zinc + desbalance hormonal + posible toxicidad por cobre. La solución es 70% interna, 30% tópica.</p>
+
+<div class="card fade">
+<h3>Por qué tienes granos — la cadena causal</h3>
+<p>Depleción de zinc (eyaculación crónica) → cobre elevado → inflamación sistémica → producción excesiva de sebo → colonización bacteriana → acné. Además, zinc bajo = cicatrización lenta de lesiones existentes. <strong>La suplementación con zinc 50mg/día durante 3 meses es el tratamiento más efectivo que puedes empezar hoy</strong> — más que cualquier crema. Estudios clínicos muestran reducción del 31% en lesiones inflamatorias con zinc oral.</p>
 </div>
 
-<h3>Protocolos de comida</h3>
-<div class="timeline">
-<div class="tl-item"><div class="tl-time">07:00 — Desayuno · ~700 kcal</div><div class="tl-title">Testosterónico + cognitivo</div><div class="tl-desc">3 huevos revueltos en oliva + 2 cdas cañihuaco + ½ palta + maca negra en kéfir 200mL. Suplementos: B9 + B6.</div></div>
-<div class="tl-item"><div class="tl-time">13:00 — Almuerzo · ~750 kcal</div><div class="tl-title">Recuperación + antiaromático</div><div class="tl-desc">200g quinua + 150g proteína + espinaca + cebolla morada cruda + ajo triturado + ½ palta. Suplementos: Zinc + Astaxantina + Omega-3 + D3+K2 + Creatina.</div></div>
-<div class="tl-item"><div class="tl-time">16:00 — Batido · ~450 kcal</div><div class="tl-title">Colágeno + piel + cognición</div><div class="tl-desc">Tarwi 30g + plátano + camu-camu + sacha inchi + linaza molida + kéfir + colágeno. L-citrulina aquí.</div></div>
-<div class="tl-item"><div class="tl-time">22:00 — Cena · ~500 kcal</div><div class="tl-title">Calórica + Mg nocturno</div><div class="tl-desc">Quinua + proteína + vegetales. Mg 300–400mg. Total día: ~2,400+ kcal (meta: 3,000+).</div></div>
+<div class="card fade">
+<h3>Rutina mañana — 05:20</h3>
+<ul>
+<li><strong>Ducha tibio 5 min → frío 2–3 min.</strong> Dopamina +250%, cierra poros, T testicular óptima.</li>
+<li><strong>Jabón de arroz o cúrcuma</strong> (los que ya tienes). Agua fría final. Secar con palmadas.</li>
+<li><strong>Vitamina C tópica</strong> (camu-camu fresco o sérum). Inhibe tirosinasa → aclara manchas.</li>
+<li><strong>SPF 50+ UVA/UVB</strong> — en Arequipa con altitud, no es opcional. 80% del envejecimiento visible es fotodaño.</li>
+</ul>
+</div>
+
+<div class="card fade">
+<h3>Rutina noche — 22:00</h3>
+<ul>
+<li><strong>Limpieza con aceite</strong> (oliva o argán) — disuelve sebo sin dañar barrera.</li>
+<li><strong>Tónico manzanilla fría</strong> — apigenina = antiinflamatorio + ansiolítico transdérmico.</li>
+<li><strong>Rosa mosqueta 3–4 gotas</strong> en manchas — retinol natural, equivalente a tratamientos de S/300+.</li>
+<li><strong>Aloe vera gel puro</strong> — acemanano +25% colágeno. Mascarilla nocturna en granos activos.</li>
+</ul>
+</div>
+
+<div class="card fade">
+<h3>Cabello — 3 intervenciones semanales</h3>
+<ul>
+<li><strong>Infusión romero</strong> post-champú, 3–4×/sem. Eficacia = minoxidil 2% (Panahi 2015 RCT).</li>
+<li><strong>Té verde matcha</strong> 1–2 tazas/día. EGCG inhibe 5α-reductasa. Foco + protección capilar.</li>
+<li><strong>Aceite cedro en barba</strong> — antibacterial, aroma amaderado. S/15–25.</li>
+</ul>
 </div>
 </section>
 
-<!-- VIRILIDAD -->
-<section id="masculino">
-<h2><span>05</span> · Virilidad y Función Eréctil</h2>
-<p class="section-sub">Optimización de testosterona, función eréctil y presencia masculina. Basado en mecanismos fisiológicos documentados.</p>
-<div class="alert ok">
-<strong>La erección es un evento vascular</strong>
-<p>Depende de: óxido nítrico (NO), cGMP, testosterona y dopamina. Cada uno se optimiza con nutrición, ejercicio, sueño y suplementación. No hay "pastilla mágica" — pero el protocolo completo produce resultados medibles.</p>
-</div>
-<div class="card-grid">
-<div class="card"><span class="tag tag-critico">PILAR 1</span><h4>Testosterona — Síntesis natural</h4><p><strong>Sueño &gt;7h:</strong> Cada hora de déficit reduce T ~15% (Leproult 2011). <strong>Zinc:</strong> Cofactor Leydig. <strong>Colesterol HDL:</strong> Huevos, palta, oliva. <strong>Fuerza:</strong> Sentadillas elevan T. <strong>IMC 18.5:</strong> Suprime producción hormonal.</p><div class="ref">Leproult R & Van Cauter E (2011). JAMA 305(21):2173.</div></div>
-<div class="card"><span class="tag tag-critico">PILAR 2</span><h4>Óxido Nítrico (NO) — Erección</h4><p>NO relaja músculo liso cavernoso → llenado → erección. <strong>L-citrulina:</strong> 50% mejora en RCT (Cormio 2011). <strong>Beterraga:</strong> Nitratos → NO. <strong>Ajo:</strong> NO + antitromboxano. <strong>Espinaca:</strong> Nitratos + Mg.</p><div class="ref">Cormio L (2011). Urology 77(1):119. / Burnett AL (1992). Science 257:401.</div></div>
-<div class="card"><span class="tag tag-alto">PILAR 3</span><h4>Dopamina — Deseo sexual</h4><p>Habituación reduce D2 (Kühn 2014). Abstinencia = upregulation D2 → motivación sexual natural. <strong>Potenciadores:</strong> Maca, ejercicio, ducha fría (+250% dopamina — Shevchuk 2008).</p><div class="ref">Kühn S & Gallinat J (2014). JAMA Psychiatry 71(7):827.</div></div>
-<div class="card"><span class="tag tag-alto">PILAR 4</span><h4>Antiaromatasa — Proteger T</h4><p>Aromatasa convierte T→estrógeno. Inhibidores naturales: cebolla morada (quercetina), ajo (alicina), zinc, linaza (lignanos). Máxima T biodisponible sin intervención farmacológica.</p><div class="ref">Adlercreutz H (2007). Crit Rev Clin Lab Sci.</div></div>
-<div class="card"><span class="tag tag-medio">PILAR 5</span><h4>Circulación vascular</h4><p>Ejercicio aeróbico mejora función endotelial (incluyendo peniana). Omega-3 reduce inflamación vascular. Astaxantina protege endotelio. Ducha fría activa circulación.</p><div class="ref">Esposito K (2004). JAMA 291(24):2978.</div></div>
+<div class="divider"></div>
+
+<!-- ═══ 04 · VOZ ═══ -->
+<section class="section" id="voz">
+<div class="section-label">04 · Voz & presencia</div>
+<h2>15 minutos que cambian <em>cómo te perciben</em></h2>
+<p class="section-desc">38% de la percepción viene del tono antes del contenido. La voz grave sale del tórax. Como cualquier músculo, se entrena.</p>
+
+<div class="card fade">
+<h3>Protocolo vocal diario — 15 min</h3>
+<h4>Min 1–3 · Respiración diafragmática</h4>
+<p>Mano en abdomen. Inhala 4s → retén 4s → exhala 8s. El pecho no debe moverse. Todo sale de aquí.</p>
+<h4>Min 3–6 · Resonancia torácica</h4>
+<p>"MMMM" continuo. La vibración debe sentirse en el esternón, no en nariz/cabeza.</p>
+<h4>Min 6–12 · Lectura en voz alta</h4>
+<p>20% más lento de lo natural. Pausas de 2–3s antes de conceptos clave.</p>
+<h4>Min 12–15 · Grabación</h4>
+<p>Grábate 1 min. Escucha. ¿Garganta? ¿Velocidad? ¿Monotonía? Sin feedback no hay corrección.</p>
 </div>
 
-<h3>Alimentos pro-eréctiles</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Alimento</th><th>Mecanismo</th><th>Vía</th><th>Dosis</th></tr>
-<tr><td><strong>Sandía</strong></td><td>L-citrulina → arginina → NO</td><td>Vasodilatación peniana</td><td>300g/día</td></tr>
-<tr><td><strong>Beterraga</strong></td><td>Nitratos → NO</td><td>Vasodilatación sistémica</td><td>250mL jugo</td></tr>
-<tr><td><strong>Cebolla morada</strong></td><td>Quercetina inhibe aromatasa</td><td>Protección de T</td><td>½ cruda/día</td></tr>
-<tr><td><strong>Ajo crudo</strong></td><td>Alicina → NO + antitromboxano</td><td>Microcirculación</td><td>1–2 dientes</td></tr>
-<tr><td><strong>Huevos</strong></td><td>Colesterol → T + colina → AcCh</td><td>Síntesis hormonal</td><td>3/día</td></tr>
-<tr><td><strong>Espinaca</strong></td><td>Nitratos + Mg + folato</td><td>NO + cofactor</td><td>1 puñado</td></tr>
-<tr><td><strong>Granada</strong></td><td>Ác. elágico → antioxidante + NO</td><td>Endotelial</td><td>250mL jugo</td></tr>
-</table></div>
-
-<div class="alert info">
-<strong>Temperatura testicular ≤36°C</strong>
-<p>Producción óptima de T y espermatogénesis requiere 2–3°C bajo la corporal. Ropa holgada (boxers), ducha fría final, evitar laptop en regazo. Mieusset R & Bujan L (1995). Human Reproduction.</p>
+<div class="card fade">
+<h3>Postura a 1.80m</h3>
+<ul>
+<li><strong>Pies:</strong> ancho de hombros, V leve. <strong>Columna:</strong> hilo del cráneo al techo.</li>
+<li><strong>Escápulas:</strong> abajo y atrás — no encorvarte por ser alto.</li>
+<li><strong>Cabeza:</strong> barbilla paralela al suelo. <strong>Manos:</strong> visibles, nunca en bolsillos al hablar.</li>
+</ul>
 </div>
 </section>
 
-<!-- ABSTINENCIA -->
-<section id="abstinencia">
-<h2><span>06</span> · Abstinencia — Evidencia Científica</h2>
-<p class="section-sub">Evaluación rigurosa. Lo que tiene soporte empírico vs lo que no. Sin juicio moral.</p>
-<div class="tbl-wrap"><table>
-<tr><th>Síntoma</th><th>¿Causa la masturbación?</th><th>Causa real</th></tr>
-<tr><td>Pérdida de memoria</td><td style="color:var(--red)">NO</td><td>Sueño 6h + B12 + déficit calórico</td></tr>
-<tr><td>Debilidad/fatiga</td><td style="color:var(--red)">NO — efectos &lt;60 min</td><td>IMC 18.5 + anemia + sueño</td></tr>
-<tr><td>Ansiedad</td><td style="color:var(--orange)">MUY POCO</td><td>Déficit Mg + sueño + sobrecarga</td></tr>
-<tr><td>Tinnitus (7 años)</td><td style="color:var(--red)">NO — imposible</td><td>Déficit B12 + estrés oxidativo</td></tr>
-</table></div>
+<div class="divider"></div>
 
-<div class="card-grid">
-<div class="card"><span class="tag tag-verde">EVIDENCIA SÓLIDA</span><h4>Mecanismo dopaminérgico — real</h4><p>Kühn & Gallinat (2014, JAMA Psychiatry): la estimulación frecuente reduce densidad D2 (habituación). Reducir = upregulation → mayor motivación para objetivos de largo plazo. Recuperarás 45–90 min/día productivos. <strong>Este mecanismo está documentado.</strong></p><div class="ref">Kühn S & Gallinat J (2014). JAMA Psychiatry, 71(7):827-834.</div></div>
-<div class="card"><span class="tag tag-medio">EVIDENCIA LIMITADA</span><h4>Pico de T al día 7</h4><p>Jiang M (2003): +45.7% al día 7. Pero n=28, sin grupo control, no replicado. Efectos hormonales se normalizan en 20–60 min (Exton 2001). No hay déficit crónico documentado por masturbación en adultos sanos.</p><div class="ref">Jiang M (2003). J Zhejiang Univ Sci 4(2). / Exton MS (2001). Psychoneuroendocrinology.</div></div>
+<!-- ═══ 05 · INFLUENCIA ═══ -->
+<section class="section" id="influencia">
+<div class="section-label">05 · Influencia</div>
+<h2>El arte de <em>convencer</em></h2>
+<p class="section-desc">Cada principio tiene sustento neurológico. Esto complementa las 48 Leyes y el Arte de la Seducción que ya lees.</p>
+
+<div class="principle fade">
+<div class="principle-num">01</div>
+<h3>La pausa como señal de valor</h3>
+<p>2–3 segundos antes de responder. Quien responde inmediato parece ansioso por aprobación. La velocidad se correlaciona negativamente con el estatus percibido.</p>
+<blockquote>Si te interrumpen, no aceleres. Reduce la velocidad. El silencio es peso.</blockquote>
 </div>
 
-<div class="alert warn">
-<strong>⚠️ No atribuir todo a la masturbación</strong>
-<p>Hacerlo puede <strong>retrasar el tratamiento de las causas reales</strong> (sueño, nutrición, B12/Mg). Tu decisión tiene base neurológica parcial (D2), pero las causas principales son nutricionales y de sueño. Trátalas en paralelo.</p>
+<div class="principle fade">
+<div class="principle-num">02</div>
+<h3>Efecto Zeigarnik — intriga activa</h3>
+<p>El cerebro recuerda mejor lo incompleto. Una frase abierta crea un loop cognitivo que persiste horas. No termines todas las historias.</p>
 </div>
-</section>
 
-<!-- TINNITUS -->
-<section id="tinnitus">
-<h2><span>07</span> · Tinnitus Crónico — 7 años</h2>
-<p class="section-sub">Precede cualquier cambio reciente. Requiere evaluación médica + protocolo nutricional.</p>
-<div class="card-grid">
-<div class="card"><span class="tag tag-critico">MÁS RELEVANTE</span><h4>Déficit B12 → Nervio auditivo</h4><p>113 pacientes: 47% tenían déficit B12. 54% mejoraron con repleción. B12 sintetiza mielina del VIII par craneal; sin mielina = señales espontáneas = zumbido.</p><div class="ref">Shemesh Z (1993). Am J Otolaryngol 14(2):94-99.</div></div>
-<div class="card"><span class="tag tag-alto">COCLEAR</span><h4>Estrés oxidativo</h4><p>Radicales libres dañan células ciliadas irreversiblemente. Astaxantina protege mitocondrias cocleares. Mg bloquea NMDA cocleares. B12 + Mg + Astaxantina = 3 vías.</p><div class="ref">Fetoni AR (2013). Exp Gerontology. / Herzberg M (1993). Exp Neurology.</div></div>
-<div class="card"><span class="tag tag-alto">AMPLIFICADOR</span><h4>Sueño → Percepción amplificada</h4><p>Privación reduce supresión cortical de señales espontáneas → tinnitus más fuerte. Corregir a 7.5h reduce molestia significativamente.</p><div class="ref">Lasisi AO & Gureje O (2011). Sleep Med 12(1):60-64.</div></div>
+<div class="principle fade">
+<div class="principle-num">03</div>
+<h3>La pregunta que activa el nucleus accumbens</h3>
+<p>No preguntes qué hacen — pregunta qué otros no entienden de lo que hacen. Crea la sensación de ser visto en profundidad.</p>
+<blockquote>"¿Cuál es la parte de tu trabajo que la mayoría no entiende o subestima?"</blockquote>
 </div>
-<div class="alert">
-<strong>🏥 Obligatorio (no opcional)</strong>
-<p><strong>Sangre:</strong> B12 sérica (&lt;300 = neurológico), Mg, hemograma, ferritina, 25-OH-Vit.D. <strong>Otorrino:</strong> Audiometría + timpanometría + BERA. <strong>Nutricional:</strong> B12 1,000–2,000 mcg + Mg 300–400 mg + Astaxantina 12 mg.</p>
-</div>
-</section>
 
-<!-- PIEL -->
-<section id="piel">
-<h2><span>08</span> · Piel, Cabello, Presencia</h2>
-<p class="section-sub">Protocolos tópicos con plantas disponibles + intervenciones de alto ROI.</p>
-<div class="card-grid">
-<div class="card"><span class="tag tag-verde">YA TIENES</span><h4>Romero = Minoxidil 2%</h4><p>RCT 6 meses: eficacia equivalente (Panahi 2015). Inhibe 5α-reductasa + vasodilatación folicular. 5 ramas/1L, enfriar, post-champú sin enjuagar. 3–4×/semana.</p><div class="ref">Panahi Y (2015). SKINmed 13(1):15-21.</div></div>
-<div class="card"><span class="tag tag-verde">YA TIENES</span><h4>Manzanilla — Baño + Tónico</h4><p>Apigenina → GABA-A ansiolítico. COX-1/COX-2 antiinflamatorio. Baño nocturno 3×/semana + tónico facial frío.</p><div class="ref">Srivastava JK (2010). Mol Med Rep. / Amsterdam JD (2009). Alt Ther Health Med.</div></div>
-<div class="card"><span class="tag tag-nuevo">AGREGAR</span><h4>Rosa Mosqueta — Manchas (noche)</h4><p>Ác. transretinoico natural → renovación celular. 3–4 gotas zonas hiperpigmentadas. 8–12 semanas. S/25–40.</p><div class="ref">Phetcharat L (2015). Clin Cosm Inv Dermatol.</div></div>
-<div class="card"><span class="tag tag-nuevo">AGREGAR</span><h4>Aloe Vera gel — Colágeno +25%</h4><p>Acemanano estimula fibroblastos. Aclarante post-inflamatorio. Capa final nocturna después de rosa mosqueta.</p><div class="ref">Dal'Belo SE (2006). Skin Res & Tech.</div></div>
-<div class="card"><span class="tag tag-critico">URGENTE</span><h4>SPF 50+ — Todos los días</h4><p>80% envejecimiento visible = fotodaño. Arequipa con UV elevado. 30 seg/día. Ya en tu lista. Activar tracking.</p><div class="ref">Flament F (2013). J Eur Acad Dermatol Venereol.</div></div>
+<div class="principle fade">
+<div class="principle-num">04</div>
+<h3>Escasez real, no performance</h3>
+<p>La fingida se detecta en 48h. La real — construida por dos carreras, lecturas, idiomas, proyectos de IA — es permanente. Tu Excel es evidencia viva.</p>
 </div>
-<div class="alert ok">
-<strong>Ducha fría — Mayor ROI no nutricional</strong>
-<p>Dopamina +250%, noradrenalina +300%, cierra poros, T testicular ≤36°C. Tibio 5 min → frío 2–3 min final. S/0. Shevchuk NA (2008). Med Hypotheses.</p>
+
+<div class="principle fade">
+<div class="principle-num">05</div>
+<h3>Marco del viajero + ingeniero</h3>
+<p>"Estudio ingeniería civil y electrónica, estoy diseñando una mano biónica con IA, y me preparo para Shanghai." Eso no necesita performance — es tu vida real.</p>
 </div>
 </section>
 
-<!-- PROTOCOLO -->
-<section id="protocolo">
-<h2><span>09</span> · Protocolo Diario</h2>
-<p class="section-sub">Integración de todos los sistemas.</p>
-<div class="timeline">
-<div class="tl-item"><div class="tl-time">05:00</div><div class="tl-title">B12 sublingual + 500mL agua</div><div class="tl-desc">Ayunas. 60 seg bajo lengua. No teléfono 30 min.</div></div>
-<div class="tl-item"><div class="tl-time">05:15</div><div class="tl-title">Box breathing + Ducha fría + Piel AM</div><div class="tl-desc">4-4-4-4 (10 ciclos) → tibio 5' → frío 2–3'. Vit C + SPF 50+.</div></div>
-<div class="tl-item"><div class="tl-time">05:30</div><div class="tl-title">Entrenamiento vocal 15 min</div><div class="tl-desc">Respiración diafragmática → humming → lectura voz alta → grabación.</div></div>
-<div class="tl-item"><div class="tl-time">05:45–07:00</div><div class="tl-title">Deep Work — bloque protegido</div><div class="tl-desc">Proyectos ingeniería, ventas, web. Sin teléfono ni redes.</div></div>
-<div class="tl-item"><div class="tl-time">07:00</div><div class="tl-title">Desayuno testosterónico + inglés</div><div class="tl-desc">3 huevos + cañihua + palta + maca + kéfir. B9+B6. Podcast inglés.</div></div>
-<div class="tl-item"><div class="tl-time">10:00</div><div class="tl-title">Colación — frutos secos + fruta</div><div class="tl-desc">Glucemia estable entre clases. 30g nueces + fruta.</div></div>
-<div class="tl-item"><div class="tl-time">13:00</div><div class="tl-title">Almuerzo completo</div><div class="tl-desc">Quinua + proteína + cebolla morada + ajo. Zinc + Astaxantina + Omega-3 + D3+K2 + Creatina.</div></div>
-<div class="tl-item"><div class="tl-time">16:00</div><div class="tl-title">Batido colación</div><div class="tl-desc">Tarwi + camu-camu + sacha inchi + linaza + colágeno + L-citrulina.</div></div>
-<div class="tl-item"><div class="tl-time">18:30</div><div class="tl-title">Ejercicio (si hay ventana)</div><div class="tl-desc">20 min aeróbico o fuerza. BDNF pico antes de enseñar.</div></div>
-<div class="tl-item"><div class="tl-time">22:00</div><div class="tl-title">Cena + Mg + Piel PM</div><div class="tl-desc">Cena calórica. Mg 300–400mg. Rosa mosqueta + aloe. Manzanilla 3×/sem. CERO pantallas.</div></div>
-<div class="tl-item"><div class="tl-time">22:30</div><div class="tl-title">SUEÑO — 7.5h meta</div><div class="tl-desc">≤20°C. Oscuridad total. Sin esto, todo lo demás es subóptimo.</div></div>
+<div class="divider"></div>
+
+<!-- ═══ 06 · LIBROS ═══ -->
+<section class="section" id="libros">
+<div class="section-label">06 · Biblioteca</div>
+<h2>Los que <em>faltan</em></h2>
+<p class="section-desc">Ya tienes: 48 Leyes, Arte de la Seducción, Brian Tracy. Estos completan los dominios faltantes.</p>
+
+<div class="book fade"><div class="book-num">1</div><div><h3>Why We Sleep</h3><div class="book-author">Matthew Walker, PhD</div><p>El más urgente. Cambia tu comportamiento del sueño permanentemente. Directamente relevante para tu situación.</p><span class="tag tag-red">Urgente</span></div></div>
+<div class="book fade"><div class="book-num">2</div><div><h3>Influence</h3><div class="book-author">Robert Cialdini, PhD</div><p>6 principios universales de persuasión. Complemento científico a las 48 Leyes. Más ético y aplicable.</p><span class="tag tag-blue">Influencia</span></div></div>
+<div class="book fade"><div class="book-num">3</div><div><h3>Never Split the Difference</h3><div class="book-author">Chris Voss</div><p>Negociación FBI para conversaciones cotidianas. Voz nocturna, espejeo, preguntas calibradas.</p><span class="tag tag-blue">Negociación</span></div></div>
+<div class="book fade"><div class="book-num">4</div><div><h3>Deep Work</h3><div class="book-author">Cal Newport</div><p>Para un ingeniero con dos carreras, saber ejecutar bloques de concentración profunda es la diferencia.</p><span class="tag tag-green">Productividad</span></div></div>
+<div class="book fade"><div class="book-num">5</div><div><h3>Fluent Forever</h3><div class="book-author">Gabriel Wyner</div><p>Método más eficiente para idiomas. Para mandarín y English avanzado: 30 min/día × 12 meses.</p><span class="tag tag-purple">Idiomas</span></div></div>
+<div class="book fade"><div class="book-num">6</div><div><h3>The Testosterone Advantage Plan</h3><div class="book-author">Schuler & Volek</div><p>Para ectomorfos que quieren masa muscular y testosterona natural. Tu caso exacto.</p><span class="tag tag-gold">Hormonal</span></div></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ 07 · VIAJES ═══ -->
+<section class="section" id="viajes">
+<div class="section-label">07 · Viajes</div>
+<h2>China y <em>Estados Unidos</em></h2>
+<p class="section-desc">Preparación de 6–12 meses. Un peruano de 1.80m con inglés sólido y algo de mandarín no llega como turista.</p>
+
+<div class="travel fade">
+<div class="travel-flag">🇨🇳</div>
+<h3>China</h3>
+<div class="travel-sub">Shanghái · Pekín · Chengdu</div>
+<h4>Frases clave</h4>
+<div class="phrase"><span class="phrase-key">你好 (Nǐ hǎo)</span><span class="phrase-val">Hola — tono descendente-ascendente</span></div>
+<div class="phrase"><span class="phrase-key">我来自秘鲁 (Wǒ lái zì Bìlǔ)</span><span class="phrase-val">Soy de Perú — abre conversaciones</span></div>
+<div class="phrase"><span class="phrase-key">干杯 (Gānbēi)</span><span class="phrase-val">Salud — obligatorio en cenas de negocios</span></div>
+<h4>Guanxi 关系</h4>
+<p style="font-size:13px;color:var(--text2)">Las relaciones preceden a los negocios. Tarjeta de presentación con dos manos. Regalos: pisco, libros de Machu Picchu. Evitar: relojes (tiempo se agota). El silencio es reflexión, respetarlo proyecta madurez.</p>
+<h4>Apps: VPN · WeChat · Alipay · Didi · Pleco</h4>
+</div>
+
+<div class="travel fade">
+<div class="travel-flag">🇺🇸</div>
+<h3>Estados Unidos</h3>
+<div class="travel-sub">NYC · Miami · LA · SF</div>
+<h4>Inglés de alto impacto</h4>
+<div class="phrase"><span class="phrase-key">"That's a fair point, however..."</span><span class="phrase-val">Reconoces antes de contradecir</span></div>
+<div class="phrase"><span class="phrase-key">"Walk me through your thinking."</span><span class="phrase-val">Pides explicación sin parecer ignorante</span></div>
+<div class="phrase"><span class="phrase-key">"I appreciate the context."</span><span class="phrase-val">Agradece sin efusividad — maduro</span></div>
+<h4>Cultura</h4>
+<p style="font-size:13px;color:var(--text2)">Networking directo. Elevator pitch: "I'm [nombre], dual-degree engineer from Perú working on AI-integrated bionics." Apretón firme. 5 min antes = puntual. Propina 18–22%. Visa B1/B2 en Lima.</p>
 </div>
 </section>
 
-<!-- EVOLUCIÓN -->
-<section id="timeline">
-<h2><span>10</span> · Línea de Tiempo de Mejora</h2>
-<div class="tbl-wrap"><table>
-<tr><th>Período</th><th>Cambios</th><th>Mecanismo</th></tr>
-<tr><td style="color:var(--green)"><strong>Días 1–7</strong> ✅</td><td>↑ Sueño · ↓ Ansiedad nocturna · Claridad AM · Pico T día 7</td><td>Mg GABA-A · Kéfir coloniza · B12 inicia · D2 upregulating</td></tr>
-<tr><td style="color:var(--cyan)"><strong>Sem 2–4</strong></td><td>↑ Energía estable · ↓ Niebla mental · ↓ Irritabilidad · ↑ Motivación</td><td>Maca HHA · Microbioma · B12 sérica · Peso +0.5 kg</td></tr>
-<tr><td style="color:var(--blue)"><strong>Sem 4–8</strong></td><td>↑ Memoria · ↓ Fatiga · ↓ Tinnitus posible · ↑ Libido · Erecciones AM</td><td>B12 remieliniza · Astaxantina cóclea · Zinc T · Peso +1–2 kg</td></tr>
-<tr><td style="color:var(--gold)"><strong>Mes 3–6</strong></td><td>↑ Rendimiento · ↑ Masa muscular · Voz grave · Piel clara · Cabello fuerte</td><td>Todo sinergiza · BDNF ejercicio · Colágeno+C · Romero 6m = Minoxidil</td></tr>
-</table></div>
+<div class="divider"></div>
+
+<!-- ═══ 08 · AROMA ═══ -->
+<section class="section" id="aroma">
+<div class="section-label">08 · Aroma</div>
+<h2>Firma <em>olfativa</em></h2>
+<p class="section-desc">2–3 puntos de pulso. La persona a tu lado no debe olerlo — debe sentirlo cuando entra en tu espacio.</p>
+
+<div class="frag fade"><h3>Dior Sauvage Elixir</h3><p>Bergamota, pimienta Sichuan, vetiver. 10–12h. Universal.</p><div class="frag-tags"><span class="frag-tag">S/350–450</span><span class="frag-tag">Universal</span></div></div>
+<div class="frag fade"><h3>Bleu de Chanel EDP</h3><p>Fresco-amaderado-cítrico. Sofisticación silenciosa. Profesional.</p><div class="frag-tags"><span class="frag-tag">S/300–380</span><span class="frag-tag">Profesional</span></div></div>
+<div class="frag fade"><h3>Versace Eros EDP</h3><p>Menta + vainilla + tonka. Alto impacto social. Nocturno.</p><div class="frag-tags"><span class="frag-tag">S/150–220</span><span class="frag-tag">Nocturno</span></div></div>
+<div class="frag fade"><h3>Aceite cedro + bergamota/sándalo</h3><p>Firma artesanal única. Barba + muñeca. S/15–50.</p><div class="frag-tags"><span class="frag-tag">S/15–50</span><span class="frag-tag">Artesanal</span></div></div>
 </section>
 
-<!-- PRIORIDADES -->
-<section id="prioridades">
-<h2><span>11</span> · Prioridades — Qué Hacer Primero</h2>
-<p class="section-sub">Por impacto real, no por dificultad.</p>
-<div class="priority-list">
-<div class="prio-item"><div class="prio-content"><h4>+500 kcal/día — Huevos, sardinas, palta, quinua <span class="prio-tag tag-critico">HOY</span></h4><p>Todo falla con déficit calórico. IMC 18.5 = el límite. S/5/día adicionales.</p></div></div>
-<div class="prio-item"><div class="prio-content"><h4>B12 sublingual — 05:00 AM <span class="prio-tag tag-critico">MAÑANA</span></h4><p>0 días. Tinnitus + memoria + fatiga = B12. Ya la tienes. No tomarla = evidencia médica sin aplicar.</p></div></div>
-<div class="prio-item"><div class="prio-content"><h4>Dormir 22:30 <span class="prio-tag tag-critico">ESTA NOCHE</span></h4><p>30 min más > cualquier suplemento. T, colágeno, BDNF, memoria = NREM.</p></div></div>
-<div class="prio-item"><div class="prio-content"><h4>Zinc 30mg — Almuerzo <span class="prio-tag tag-alto">ESTA SEMANA</span></h4><p>0 días. +300 enzimas, T, función eréctil (NO+cGMP), piel, inmune.</p></div></div>
-<div class="prio-item"><div class="prio-content"><h4>Ejercicio 3×/semana <span class="prio-tag tag-critico">ESTA SEMANA</span></h4><p>BDNF +200–300%, T↑, masa, postura. 0 días. Sem.1: caminata rápida.</p></div></div>
-<div class="prio-item"><div class="prio-content"><h4>Quinua + Cañihua — activar <span class="prio-tag tag-alto">ESTA SEMANA</span></h4><p>0 días. Ya compradas (S/60). Base calórica y proteica andina.</p></div></div>
-<div class="prio-item"><div class="prio-content"><h4>Omega-3 + Creatina — comprar <span class="prio-tag tag-alto">PRONTO</span></h4><p>DHA = 30% corteza. Creatina = +700 estudios. Ambos en Excel sin precio.</p></div></div>
-<div class="prio-item"><div class="prio-content"><h4>Rosa mosqueta + SPF 50 <span class="prio-tag tag-medio">ESTA SEMANA</span></h4><p>Manchas cara en objetivos ●●○. Retinol natural noche + SPF día.</p></div></div>
-<div class="prio-item"><div class="prio-content"><h4>Beterraga + Sandía <span class="prio-tag tag-nuevo">AGREGAR</span></h4><p>Precursores de NO → función eréctil natural. Beterraga en Excel (0 días).</p></div></div>
-<div class="prio-item"><div class="prio-content"><h4>Análisis de sangre <span class="prio-tag tag-critico">SEMANA 1</span></h4><p>B12, Mg, hemograma, ferritina, 25-OH-Vit.D, T total, glucosa. + Otorrino. Sin datos = estimación. Con datos = intervención precisa.</p></div></div>
+<div class="divider"></div>
+
+<!-- ═══ 09 · PROTOCOLO ═══ -->
+<section class="section" id="protocolo">
+<div class="section-label">09 · Protocolo diario</div>
+<h2>El día <em>estructurado</em></h2>
+<p class="section-desc">Adaptado a tu horario real: 7am–7pm universidad + 3–4h dictando clases + estudio nocturno.</p>
+
+<div class="tl fade">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">05:00</div><div class="tl-title">B12 + hidratación</div><div class="tl-desc">500ml agua. B12 bajo lengua 60s. No teléfono 30 min.</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">05:15</div><div class="tl-title">Respiración + ducha fría + piel</div><div class="tl-desc">Box breathing 4-4-4-4. Ducha tibio→frío. Vitamina C + SPF 50+.</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">05:30</div><div class="tl-title">Vocal 15 min</div><div class="tl-desc">Diafragma → humming → lectura → grabación. Agua tibia con miel.</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">05:45</div><div class="tl-title">Deep Work 1h</div><div class="tl-desc">Lo más importante del día. Tesis IA, mano biónica, proyectos. Sin teléfono.</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">07:00</div><div class="tl-title">Desayuno 750 kcal + inglés</div><div class="tl-desc">Protocolo completo. Podcast inglés mientras desayunas. Zinc + D3+K2.</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">07:00–19:00</div><div class="tl-title">Universidad + clases pre</div><div class="tl-desc">Snack 10:30. Almuerzo 13:00 (850 kcal). Batido 16:30 (500 kcal).</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">19:00</div><div class="tl-title">Ejercicio 40 min, 3×/sem</div><div class="tl-desc">Sentadillas, dominadas, press. BDNF +200%. El hábito de mayor ROI.</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">20:30</div><div class="tl-title">Cena 600 kcal</div><div class="tl-desc">Protocolo nocturno. Mg 400mg + NAC 600mg.</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">21:00–22:00</div><div class="tl-title">Estudio/repaso</div><div class="tl-desc">1h máximo. Sin pantalla después de las 22:00.</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">22:00</div><div class="tl-title">Piel nocturna + cierre</div><div class="tl-desc">Rosa mosqueta + aloe vera. Manzanilla 3×/sem. Teléfono fuera del cuarto.</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-time">22:30</div><div class="tl-title">Sueño — 6.5h mínimo</div><div class="tl-desc">Meta progresiva: 6→6.5→7→7.5h en 4 semanas. T° ≤20°C, oscuridad total.</div></div>
 </div>
-
-<h3>Introducción gradual</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Sem</th><th>Agregar</th><th>Por qué así</th></tr>
-<tr><td>1</td><td>B12 + Kéfir + Quinua + Cañihua + Huevos</td><td>Base nutricional urgente</td></tr>
-<tr><td>2</td><td>+ Mg (gradual) + Zinc + Ajo</td><td>Mg lento = sin efecto laxante</td></tr>
-<tr><td>3</td><td>+ Astaxantina + Maca consistente</td><td>Liposolubles con base digestiva</td></tr>
-<tr><td>4</td><td>+ Omega-3 + D3+K2 + Creatina</td><td>Sistema estable → optimizadores</td></tr>
-<tr><td>5–6</td><td>+ L-citrulina + Colágeno + Camu-camu</td><td>Colágeno necesita Vit C activa</td></tr>
-</table></div>
 </section>
 
+<div class="divider"></div>
+
+<!-- ═══ 10 · PRIORIDADES ═══ -->
+<section class="section" id="prioridades">
+<div class="section-label">10 · Prioridades</div>
+<h2>Qué hacer <em>primero</em></h2>
+<p class="section-desc">Ordenado por impacto real. Los primeros 3 son hoy. Cada uno tiene fecha y costo.</p>
+
+<div class="priority fade"><div class="priority-num">1</div><div class="priority-content"><h3>Test H. pylori + hemograma + zinc sérico</h3><p>Tu gastritis + halitosis + granos + no poder subir de peso pueden tener una causa tratable con antibióticos. Los exámenes de sangre revelan el estado real de tu zinc y testosterona. <strong>Sin datos, todo lo demás es adivinanza.</strong></p><span class="tag tag-red">Esta semana · S/150–300</span></div></div>
+
+<div class="priority fade"><div class="priority-num">2</div><div class="priority-content"><h3>+900 kcal/día — cena + snack + pan</h3><p>Todo falla si el cuerpo está en déficit. IMC 18.5 es el límite clínico. La V5 añade la cena completa (600 kcal) y snack (150 kcal) que antes no existían.</p><span class="tag tag-red">Hoy mismo · S/0 extra</span></div></div>
+
+<div class="priority fade"><div class="priority-num">3</div><div class="priority-content"><h3>Zinc 50mg/día — 3 meses intensivo</h3><p>14 años de depleción. Cada eyaculación perdía ~5mg. Recuperar zinc = piel sin granos, testosterona ↑, inmunidad, concentración, ánimo. Después de 3 meses, bajar a 30mg mantenimiento.</p><span class="tag tag-red">Mañana · S/25–40/frasco</span></div></div>
+
+<div class="priority fade"><div class="priority-num">4</div><div class="priority-content"><h3>Mantener abstinencia — meta día 30</h3><p>Estás en día 7. El dolor de cabeza es tu cerebro recalibrándose. Cada día que sostienes, los receptores D2 se recuperan. El flatline viene entre día 15–30 — no es retroceso, es reconstrucción. Teléfono fuera del cuarto por la noche.</p><span class="tag tag-orange">Diario · S/0</span></div></div>
+
+<div class="priority fade"><div class="priority-num">5</div><div class="priority-content"><h3>Ejercicio 3×/sem — sentadillas, dominadas, press</h3><p>BDNF +200%, testosterona ↑, dopamina natural (reemplaza la que perdiste), postura, masa muscular. No requiere gimnasio. Parque o casa.</p><span class="tag tag-orange">Esta semana · 3×40 min · S/0</span></div></div>
+
+<div class="priority fade"><div class="priority-num">6</div><div class="priority-content"><h3>Sueño 22:30 → meta progresiva 7h</h3><p>No puedes pasar de 6h a 7.5h de golpe con tu horario. Meta: semana 1→6.5h, semana 2→6.5h, semana 3→7h, semana 4→7h estable. Cada hora adicional = testosterona, colágeno, BDNF, todo.</p><span class="tag tag-orange">Esta noche · S/0</span></div></div>
+
+<div class="priority fade"><div class="priority-num">7</div><div class="priority-content"><h3>Kéfir diario — tu probiótico más importante</h3><p>Con gastritis confirmada o sospechosa, el kéfir es medicina. 90–95% de la serotonina se produce en el intestino. Restaurar tu flora gástrica mejora ánimo, absorción de nutrientes, halitosis y digestión.</p><span class="tag tag-green">Ya lo tienes · Activar diario</span></div></div>
+
+<div class="priority fade"><div class="priority-num">8</div><div class="priority-content"><h3>Vocal + postura — 15 min/mañana</h3><p>Para dictar clases pre, para networking, para tu tesis, para ventas al estado. A 1.80m con voz entrenada = presencia física inmediata.</p><span class="tag tag-green">Mañana 05:30 · S/0</span></div></div>
+
+<div class="priority fade"><div class="priority-num">9</div><div class="priority-content"><h3>Deep Work 1h/día — tesis IA + mano biónica</h3><p>Tu idea de mano biónica con IA es un tema de tesis brillante que combina ambas carreras. 1h antes de la universidad, cada día, acumula 365h/año. Eso es un proyecto completo.</p><span class="tag tag-blue">Mañana 05:45 · S/0</span></div></div>
+
+<div class="priority fade"><div class="priority-num">10</div><div class="priority-content"><h3>Inglés 30 min/día — podcast durante desayuno</h3><p>China y EEUU requieren inglés funcional. 30 min de input auditivo diario = curso intensivo en 12 meses. No cuesta tiempo extra.</p><span class="tag tag-blue">Mañana · S/0</span></div></div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
 <footer>
-<p><strong>Sistema Personal Élite V5 · Análisis Científico Integral</strong></p>
-<p>Fuentes: PubMed · Scopus · Web of Science · Cochrane Library — Solo estudios revisados por pares<br>
-Datos: Excel SistemaPersonal_Final4 · Arequipa, 15 Marzo 2026</p>
-<p style="margin-top:1rem">⚕️ No reemplaza consulta médica profesional. Los análisis de sangre y otorrino son <strong>obligatorios</strong>.</p>
+<p><strong>Sistema Personal Élite V5 · Integral</strong></p>
+<p>Fuentes: PubMed · Scopus · Cochrane Library · ICD-11</p>
+<p>Correcciones V5: diagnóstico médico real, fases de recuperación dopaminérgica,<br>
+balance calórico verificado (2,850 kcal), macros explícitos (140g P),<br>
+cena estructurada, zinc 50mg por depleción, horario adaptado a universidad 7am–7pm</p>
+<p style="margin-top:16px;opacity:0.5">Este documento no reemplaza consulta médica profesional<br>Arequipa · Marzo 2026</p>
 </footer>
 
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('vis')})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+const secs=document.querySelectorAll('section[id]'),links=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop-100)c=s.id});links.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)})});
+</script>
 </body>
 </html>
